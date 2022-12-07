@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
+    <sys_rest_message_fn_headers action="INSERT_OR_UPDATE">
+        <name>Content-Type</name>
+        <rest_message_function display_value="getGithub">3af6462987a719109839fd57dabb3564</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-03 18:23:29</sys_created_on>
+        <sys_id>d886562987a719109839fd57dabb3576</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Content-Type</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_headers_d886562987a719109839fd57dabb3576</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
+        <value>application/vnd.github.raw</value>
+    </sys_rest_message_fn_headers>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184ead9710f0000001</claim_timestamp>
+        <metadata_update_name>sys_rest_message_fn_headers_d886562987a719109839fd57dabb3576</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:30:29</sys_created_on>
+        <sys_id>a07e7fa287e71d109839fd57dabb352a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
+    </sys_claim>
+</record_update>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.OAuthUtil_Azure</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Create this script include by cloning the OAuthUtil, and script is updated to add the resource parameter to the request to get access token from Microsoft Azure.</description>
+        <name>OAuthUtil_Azure</name>
+        <script><![CDATA[var OAuthUtil_Azure = Class.create();
+OAuthUtil_Azure.prototype = {
+	initialize: function() {
+	},
+	
+	interceptRequestParameters : function(requestParamMap) {
+		// Add/Modify request parameters if needed
+		requestParamMap.put('resource','https://management.azure.com/');
+		this.preprocessAccessToken(requestParamMap);
+	},
+	
+	parseTokenResponse: function(accessTokenResponse) {
+		this.postprocessAccessToken(accessTokenResponse);
+	},
+	
+	preprocessAuthCode: function(requestParamMap) {
+	},
+	
+	preprocessAccessToken: function(requestParamMap) {
+	},
+	
+	postprocessAccessToken: function(accessTokenResponse) {
+		var contentType = accessTokenResponse.getContentType();
+		if (contentType && contentType.indexOf('application/json') != -1) {
+			var tokenResponse = (new global.JSON()).decode(accessTokenResponse.getBody());
+			var paramMap = accessTokenResponse.getparameters();
+			for (param in tokenResponse)
+				paramMap.put(param, tokenResponse[param].toString());
+		}
+	},
+	
+	type: 'OAuthUtil_Azure'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-26 17:05:19</sys_created_on>
+        <sys_id>de710613879311109839fd57dabb35de</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>OAuthUtil_Azure</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_include_de710613879311109839fd57dabb35de</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:31:07</sys_updated_on>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eada06ae0000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_de710613879311109839fd57dabb35de</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:31:07</sys_created_on>
+        <sys_id>f99effa287e71d109839fd57dabb35cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:31:07</sys_updated_on>
+    </sys_claim>
+</record_update>
