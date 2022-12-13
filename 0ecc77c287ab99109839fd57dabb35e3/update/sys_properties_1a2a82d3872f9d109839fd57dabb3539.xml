@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Devops pipeline user to trigger Azure build pipeline</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>devops.pipeline.user</name>
+        <read_roles/>
+        <suffix/>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-09 03:59:19</sys_created_on>
+        <sys_id>1a2a82d3872f9d109839fd57dabb3539</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>devops.pipeline.user</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_properties_1a2a82d3872f9d109839fd57dabb3539</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-09 04:12:05</sys_updated_on>
+        <type>string</type>
+        <value>madhu.pillai1@kyndryl.com</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=1a2a82d3872f9d109839fd57dabb3539"/>
+</record_update>

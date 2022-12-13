@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Azure Devops Pipeline configuration">7ce9c653872f9d109839fd57dabb35b1</category>
+        <order>1</order>
+        <property display_value="Devops_Pipeline_User" name="Devops_Pipeline_User">1a2a82d3872f9d109839fd57dabb3539</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-09 04:00:32</sys_created_on>
+        <sys_id>ed9a82d3872f9d109839fd57dabb3504</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Devops_Pipeline_User.Azure Devops Pipeline configuration</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_ed9a82d3872f9d109839fd57dabb3504</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-09 04:00:32</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

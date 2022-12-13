@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+    <oauth_entity action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <auth_code_lifespan>0</auth_code_lifespan>
+        <auth_url/>
+        <certificate_url/>
+        <client_id>4ac7bac2-37ad-477c-9141-2ba66f7effa8</client_id>
+        <client_secret>﷞﷟﷒33cb25ce879311109839fd57dabb35dd﷬﷔1﷬﷭MiOuvbdrdU-oOtoK9O_nQQ==y4mjrw64p3yMOWK6AzPYiqCKWlJCaFft6IookPiLVnd5vYTc2oDFEiVsxLu5dBvil02-vSnHT5c=﷮﷯</client_secret>
+        <client_uuid>e98eb55f875311109839fd57dabb35f2</client_uuid>
+        <code_challenge_method>S256</code_challenge_method>
+        <comments/>
+        <default_grant_type>client_credentials</default_grant_type>
+        <id_token_lifespan>0</id_token_lifespan>
+        <logo_url/>
+        <message_signature_lifespan>0</message_signature_lifespan>
+        <name>Azure Windows Linux Provisioning</name>
+        <oauth_api_script display_value="OAuthUtil_Azure">de710613879311109839fd57dabb35de</oauth_api_script>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url>https://dev125405.service-now.com/oauth_redirect.do</redirect_url>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt>0</salt>
+        <send_client_credentials_as>request_body_parameter</send_client_credentials_as>
+        <skip_authorize>false</skip_authorize>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-26 16:56:30</sys_created_on>
+        <sys_id>ed8eb55f875311109839fd57dabb35f2</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Azure Windows Linux Provisioning</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>oauth_entity_ed8eb55f875311109839fd57dabb35f2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:55:01</sys_updated_on>
+        <token_url>https://login.microsoftonline.com/c8ecc778-3803-4184-9438-0e4a60a5edeb/oauth2/token</token_url>
+        <type>oauth_provider</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <user/>
+    </oauth_entity>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eaefe7db0000001</claim_timestamp>
+        <metadata_update_name>oauth_entity_ed8eb55f875311109839fd57dabb35f2</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:55:01</sys_created_on>
+        <sys_id>c414443a87e71d109839fd57dabb3592</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-07 04:55:01</sys_updated_on>
+    </sys_claim>
+</record_update>

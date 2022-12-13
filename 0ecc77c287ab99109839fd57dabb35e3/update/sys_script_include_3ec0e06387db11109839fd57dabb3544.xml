@@ -91,8 +91,8 @@ ITDQUERYAZURERESOURCES.prototype = Object.extendsObject(AbstractAjaxProcessor, {
                     vmSizeNames = ((parsed['value'][key]['name'])) + '|' + vmSizeNames;
                 }
             } else {
-                vmSizeNames = 'No VMSizes Available for this Location';
-                gs.log('No VMSizes Available for this Location');
+                vmSizeNames = 'No VMSizes Available for Region :' + locationName;
+                gs.log('No VMSizes Available for Region :' + locationName);
             }
         } catch (ex) {
             gs.info("No VMSizes Available catch line Exception : " + ex + "\nResponse : " + JSON.stringify(response) + "\nhttpstatus :" + httpStatus);
@@ -187,6 +187,54 @@ ITDQUERYAZURERESOURCES.prototype = Object.extendsObject(AbstractAjaxProcessor, {
         }
         return regionList;
     },
+    generateHostname: function() {
+
+        var region = this.getParameter('sysparm_region').toString();
+        var env = this.getParameter('sysparm_environment').toString();
+        var bs = this.getParameter('sysparm_bs').toString();
+
+        var prefix = gs.getProperty('Hostname Prefix');
+        var hostname = prefix + '-' + env + '-' + region.toString();
+        hostname = hostname.replace(' ', '');
+        hostname = hostname.substring(0, 15);
+        return hostname.toLowerCase();
+
+    },
+    getSubnetLists: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+			
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+			var resourcegroup = this.getParameter('sysparm_resourcegroup').toString();
+			var virtual_network = this.getParameter('sysparm_virtual_network').toString();
+						
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getSubnetList');
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+			request.setStringParameterNoEscape('resourceGrpId', resourcegroup);
+			request.setStringParameterNoEscape('virtualNwName', virtual_network);
+			
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var subnetlist = '';
+				var sub = parsed['value'];
+
+                for (var key in sub) {
+                     subnetlist = (sub[key]['name']) + '|' + subnetlist;
+                }
+                gs.log('subnetlist  : ' + regionList);
+            } else {
+                gs.log('Error : getSubnetLists' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No Subnetlist Available catch line Exception : " + ex);
+        }
+        return subnetlist;
+    },
 
     isPublic: function() {
         return true;
@@ -198,14 +246,14 @@ ITDQUERYAZURERESOURCES.prototype = Object.extendsObject(AbstractAjaxProcessor, {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-27 06:20:34</sys_created_on>
         <sys_id>3ec0e06387db11109839fd57dabb3544</sys_id>
-        <sys_mod_count>35</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>ITDQUERYAZURERESOURCES</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_include_3ec0e06387db11109839fd57dabb3544</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:31:07</sys_updated_on>
+        <sys_updated_on>2022-12-12 14:53:55</sys_updated_on>
     </sys_script_include>
     <sys_claim action="INSERT_OR_UPDATE">
         <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
