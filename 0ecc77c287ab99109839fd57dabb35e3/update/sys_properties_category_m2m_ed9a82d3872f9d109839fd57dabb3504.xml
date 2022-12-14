@@ -2,7 +2,7 @@
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
         <category display_value="Azure Devops Pipeline configuration">7ce9c653872f9d109839fd57dabb35b1</category>
         <order>1</order>
-        <property display_value="Devops_Pipeline_User" name="Devops_Pipeline_User">1a2a82d3872f9d109839fd57dabb3539</property>
+        <property display_value="devops.pipeline.user" name="devops.pipeline.user">1a2a82d3872f9d109839fd57dabb3539</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-09 04:00:32</sys_created_on>

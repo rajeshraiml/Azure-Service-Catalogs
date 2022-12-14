@@ -20,7 +20,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-12-07 04:37:38</sys_updated_on>
         <table/>
-        <ui_policy display_value="Make Filed Invisable">37a92734872395109839fd57dabb3587</ui_policy>
+        <ui_policy display_value="Make Filed Invisable Provisioning VM Catalog">37a92734872395109839fd57dabb3587</ui_policy>
         <variable>os</variable>
         <variable_set/>
         <visible>false</visible>

@@ -31,12 +31,12 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-09 03:33:12</sys_created_on>
         <sys_id>3c84c25f87eb9d109839fd57dabb35fb</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-09 03:37:24</sys_updated_on>
+        <sys_updated_on>2022-12-09 03:39:18</sys_updated_on>
         <table>sc_req_item</table>
         <timezone/>
-        <validated>false</validated>
+        <validated>true</validated>
         <workflow display_value="Windows Linux Provisioning Workflow">d6f47ccb879f51109839fd57dabb3553</workflow>
     </wf_workflow_version>
     <wf_workflow action="INSERT_OR_UPDATE">
