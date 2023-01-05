@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sc_task</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="sc_task">stateCHANGESTO2^short_descriptionLIKEAuto-Patch Tag Update^NQshort_descriptionSTARTSWITHAuto-Patch Tag Update^state=1^work_notesVALCHANGES^EQ<item display_value="Work in Progress" endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="2"/>
+            <item endquery="false" field="short_description" goto="false" newquery="false" operator="LIKE" or="false" value="Auto-Patch Tag Update"/>
+            <item endquery="false" field="short_description" goto="false" newquery="true" operator="STARTSWITH" or="false" value="Auto-Patch Tag Update"/>
+            <item display_value="Open" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="1"/>
+            <item endquery="false" field="work_notes" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>KCNS-Trigger-LogicApp-PatchTagUpdate</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    try {
+        // Add your code here
+        var item = new RITMVariablesUtil();
+        var data = item.getVariables(current.request_item, true, true);
+        var payload = '{';
+        var temp = '{';
+		var subscription ='';
+		var vmlist = '';
+		//var rg ='';
+		var tags ='';		 
+        for (var i = 0; i < data.length; i++) {
+
+            if (data[i].name == 'subscription') {
+                //temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',\n';
+                //temp = temp + '"subscription":"poc",';
+				subscription = "poc";
+
+            } else if (data[i].name == 'resource_group') {
+                //temp = temp + '"resource_group":"' + data[i].value + '",';
+				rg = data[i].value
+				
+
+            } else if (data[i].name == 'vm_list') {
+                
+                vmlist = data[i].value;
+                //vmlist = vmlist.split(',');
+                //temp = temp + '"vmname":"' + vmlist[0] + '",';
+				//vmlist = vmlist[0].toString();
+				vmlist = vmlist.split(',');
+				var tempvm =''
+				for(i=0; i< vmlist.length();i++){
+					tempvm=tempvm+"'+vmlist[i]+'"
+				}
+
+            } else if (data[i].name == 'patching_group') {
+                //temp = temp + '"tags":"' + data[i].value + '"';
+				tags = data[i].value;
+				
+            }
+        }
+
+
+        temp = temp + '}';
+        payload = payload + '"templateParameters":' + temp + '}';
+
+       payload1= {
+            "templateParameters": {
+                "subscription": subscription,
+                "resource_group": rg,
+                //"vmname": vmlist,
+				"vmname": tempvm,
+                "tags": tags
+
+            }
+        }
+		
+		msg = msg + "\n\nPayload1 "+payload1;
+        var msg = "Pipeline Details ";
+        var restMsgName = 'Azure_Windows_Linux_Rest_Message';/*
+        var request = new sn_ws.RESTMessageV2(restMsgName, 'triggerPatchTagUpdatePipeline');
+
+        var usename = gs.getProperty('devops.pipeline.user');
+        var token = gs.getProperty('devops.pipeline.token');
+
+        var devopsuser = usename + ':' + token;
+        var organization = gs.getProperty('pipeline.patch.organization');
+        var project = gs.getProperty('pipeline.patch.project');
+        project = project.replaceAll(" ", "%20");
+        var pipelineId = gs.getProperty('pipeline.patch.pipelineid');
+
+        request.setStringParameterNoEscape('organization', organization);
+        request.setStringParameterNoEscape('project', project);
+        request.setStringParameterNoEscape('pipelineId', pipelineId);
+
+        var encodedAuth = GlideStringUtil.base64Encode(devopsuser);  
+		
+        request.setRequestHeader("Accept", "Application/json");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Authorization", "Basic " + encodedAuth);
+        request.setRequestBody(JSON.stringify(payload1));
+
+        var endpoint = request.getEndpoint();
+        var response = request.execute();
+        var httpStatus = response.getStatusCode();
+
+        msg = msg + '\n\nendpoint :' + endpoint + '\n\nResponse :' + response.getBody() + '\n\nstatus : ' + httpStatus;
+
+        if (httpStatus == 200 || httpStatus == 201) {
+            var responseBody = response.getBody();
+            var parser = new JSONParser();
+            var parsed = parser.parse(responseBody);
+            current.state = 3;
+			current.request_item.state = 3;
+
+            msg = msg + '\n\nresponseBody :' + responseBody + '\n\nSuccessfully Request submitted!!';
+
+        } else {
+            current.state = 1;
+            msg = msg + '\n\nresponseBody :' + responseBody + '\n\nFailed to Submit Request!!';
+
+        }
+*/
+        current.work_notes = 'BR : KCNS-Trigger-LogicApp-PatchTagUpdate :\n\n' + JSON.stringify(payload1) + '\n' + msg;
+        current.update();
+    } catch (e) {
+        current.work_notes = 'BR : KCNS-Trigger-LogicApp-PatchTagUpdate exception :\n\n' + e;
+        current.update();
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-02 02:01:11</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>2c2559cf87c829109839fd57dabb350e</sys_id>
+        <sys_mod_count>52</sys_mod_count>
+        <sys_name>KCNS-Trigger-LogicApp-PatchTagUpdate</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_2c2559cf87c829109839fd57dabb350e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-05 16:31:22</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=2c2559cf87c829109839fd57dabb350e"/>
+</record_update>

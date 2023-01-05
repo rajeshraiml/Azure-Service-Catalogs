@@ -13,12 +13,13 @@ GitHubUploadUtil.prototype = {
     uploadFile: function(fileName, fileContent) {
         try {
 			var filePath ='';
+			var msg='';
             restMsgName = 'Azure_Windows_Linux_Rest_Message';
             var request = new sn_ws.RESTMessageV2(restMsgName, 'putGithub');
             var encodedcontent = GlideStringUtil.base64Encode(fileContent);
             request.setStringParameter('fileName', fileName);
             request.setStringParameter('content', encodedcontent);
-            request.setStringParameter('message', "new file uploaded");
+            request.setStringParameter('message', fileName+" file uploaded");
 
             var response = request.execute();
             var httpStatus = response.getStatusCode();
@@ -35,6 +36,8 @@ GitHubUploadUtil.prototype = {
         } catch (ex) {
             gs.info("GitHubUploadUtil Exception : " + ex);
         }
+		
+		return httpStatus;
     },
 
     type: 'GitHubUploadUtil'
@@ -43,14 +46,14 @@ GitHubUploadUtil.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-05 01:24:39</sys_created_on>
         <sys_id>3a90050687ef59109839fd57dabb35c0</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>GitHubUploadUtil</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_include_3a90050687ef59109839fd57dabb35c0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:31:07</sys_updated_on>
+        <sys_updated_on>2022-12-29 02:48:49</sys_updated_on>
     </sys_script_include>
     <sys_claim action="INSERT_OR_UPDATE">
         <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>

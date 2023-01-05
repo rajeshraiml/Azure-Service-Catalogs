@@ -104,38 +104,6 @@ RITMVariablesUtil.prototype = {
         return tag_array;
 
     },
-    getOSdetails: function(img) {
-
-        try {
-            var str = img.toString();           
-            var osdetails = '';
-            if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2012"))) {
-                osdetails = 'Windows';
-
-            } else if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2016"))) {
-                osdetails = 'Windows';
-
-
-            } else if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2019"))) {
-                osdetails = 'Windows';
-
-            } else if ((str.includes("Red Hat Enterprise Linux 6") || str.includes("RHEL 6") || str.includes("Linux 6") || str.includes("RHEL6") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("6"))) {
-                osdetails = 'Linux';
-
-            } else if ((str.includes("Red Hat Enterprise Linux 7") || str.includes("Linux 7") || str.includes("RHEL7") || str.includes("RHEL-7") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("7"))) {
-                osdetails = 'Linux';
-
-
-            } else if ((str.includes("Red Hat Enterprise Linux 8") || str.includes("Linux 8") || str.includes("RHEL8") || str.includes("RHEL 8") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("8"))) {
-                osdetails = 'Linux';
-
-
-            }
-            return osdetails;
-        } catch (e) {
-            return e;
-        }
-    },
 
     type: 'RITMVariablesUtil'
 };]]></script>
@@ -143,14 +111,14 @@ RITMVariablesUtil.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-30 15:12:46</sys_created_on>
         <sys_id>e0fd862c87eb15109839fd57dabb3564</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>RITMVariablesUtil</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_include_e0fd862c87eb15109839fd57dabb3564</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:31:07</sys_updated_on>
+        <sys_updated_on>2022-12-15 10:28:30</sys_updated_on>
     </sys_script_include>
     <sys_claim action="INSERT_OR_UPDATE">
         <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>

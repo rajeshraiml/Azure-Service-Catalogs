@@ -3,8 +3,8 @@
         <active>true</active>
         <applies_catalog>true</applies_catalog>
         <applies_extended>false</applies_extended>
-        <applies_req_item>false</applies_req_item>
-        <applies_sc_task>false</applies_sc_task>
+        <applies_req_item>true</applies_req_item>
+        <applies_sc_task>true</applies_sc_task>
         <applies_target_record>false</applies_target_record>
         <applies_to>item</applies_to>
         <cat_item display_value="Modify Patching Group">85aa7bf0876395109839fd57dabb35d8</cat_item>
@@ -15,7 +15,7 @@
         <global>true</global>
         <isolate_script>true</isolate_script>
         <messages/>
-        <name>Populate New Patch Group</name>
+        <name>Modify Patch Populate New Patch Group</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
     if (isLoading || newValue == '') {
@@ -23,64 +23,54 @@
     }
 
     if (newValue != '') {
-        var grptype = g_form.getValue('patching_group_type');
-        var os = g_form.getValue('os');
+        var os = g_form.getValue('os_type');
         if (os == 'Windows') {
             g_form.clearOptions("patching_group");
-            if (grptype == 'Pilot') {
-               // g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'P1W', 'P1W', 1);
-                g_form.addOption("patching_group", 'P2W', 'P2W', 2);
-                g_form.addOption("patching_group", 'P3W', 'P3W', 3);
-                g_form.addOption("patching_group", 'P4W', 'P4W', 4);
 
-            } else if (grptype == 'Standard-HJ-DB') {
-                //g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'SP5W', 'SP5W', 1);
-                g_form.addOption("patching_group", 'SN5W', 'SN5W', 2);
+            g_form.addOption("patching_group", '--None--', '--None--', 0);
+            g_form.addOption("patching_group", 'P1W', 'P1W', 1);
+            g_form.addOption("patching_group", 'P2W', 'P2W', 2);
+            g_form.addOption("patching_group", 'P3W', 'P3W', 3);
+            g_form.addOption("patching_group", 'P4W', 'P4W', 4);
+            g_form.addOption("patching_group", 'SP1W', 'SP1W', 5);
+            g_form.addOption("patching_group", 'SP2W', 'SP2W', 6);
+            g_form.addOption("patching_group", 'SP3W', 'SP3W', 7);
+            g_form.addOption("patching_group", 'SP4W', 'SP4W', 8);
+            g_form.addOption("patching_group", 'SN1W', 'SN1W', 9);
+            g_form.addOption("patching_group", 'SN2W', 'SN2W', 10);
+            g_form.addOption("patching_group", 'SN3W', 'SN3W', 11);
+            g_form.addOption("patching_group", 'SN4W', 'SN4W', 12);
 
-            } else if (grptype == 'Standard-HJ-App') {
-                //g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'SP6W', 'SP6W', 1);
-                g_form.addOption("patching_group", 'SN6W', 'SN6W', 2);
+            g_form.addOption("patching_group", 'SP5W', 'SP5W', 13);
+            g_form.addOption("patching_group", 'SN5W', 'SN5W', 14);
+            g_form.addOption("patching_group", 'SP6W', 'SP6W', 15);
+            g_form.addOption("patching_group", 'SN6W', 'SN6W', 16);
 
-            } else {
-                //g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'SP1W', 'SP1W', 1);
-                g_form.addOption("patching_group", 'SP2W', 'SP2W', 2);
-                g_form.addOption("patching_group", 'SP3W', 'SP3W', 3);
-                g_form.addOption("patching_group", 'SP4W', 'SP4W', 4);
-                g_form.addOption("patching_group", 'SN1W', 'SN1W', 5);
-                g_form.addOption("patching_group", 'SN2W', 'SN2W', 6);
-                g_form.addOption("patching_group", 'SN3W', 'SN3W', 7);
-                g_form.addOption("patching_group", 'SN4W', 'SN4W', 8);
 
-            }
 
         } else { //For Linux OS
-            
+
             g_form.clearOptions("patching_group");
-            if (grptype == 'Pilot') {
-                //g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'P1L', 'P1L', 1);
-                g_form.addOption("patching_group", 'P2L', 'P2L', 2);
-                g_form.addOption("patching_group", 'P3L', 'P3L', 3);
-                g_form.addOption("patching_group", 'P4L', 'P4L', 4);
 
-            } else {
-                //g_form.addOption("patching_group", '--None--', '--None--', 0);
-                g_form.addOption("patching_group", 'SP1L', 'SP1L', 1);
-                g_form.addOption("patching_group", 'SP2L', 'SP2L', 2);
-                g_form.addOption("patching_group", 'SP3L', 'SP3L', 3);
-                g_form.addOption("patching_group", 'SP4L', 'SP4L', 4);
-                g_form.addOption("patching_group", 'SN1L', 'SN1L', 5);
-                g_form.addOption("patching_group", 'SN2L', 'SN2L', 6);
-                g_form.addOption("patching_group", 'SN3L', 'SN3L', 7);
-                g_form.addOption("patching_group", 'SN4L', 'SN4L', 8);
+            g_form.addOption("patching_group", '--None--', '--None--', 0);
 
-            }
+            g_form.addOption("patching_group", 'P1L', 'P1L', 1);
+            g_form.addOption("patching_group", 'P2L', 'P2L', 2);
+            g_form.addOption("patching_group", 'P3L', 'P3L', 3);
+            g_form.addOption("patching_group", 'P4L', 'P4L', 4);
+
+
+            g_form.addOption("patching_group", 'SP1L', 'SP1L', 5);
+            g_form.addOption("patching_group", 'SP2L', 'SP2L', 6);
+            g_form.addOption("patching_group", 'SP3L', 'SP3L', 7);
+            g_form.addOption("patching_group", 'SP4L', 'SP4L', 8);
+            g_form.addOption("patching_group", 'SN1L', 'SN1L', 9);
+            g_form.addOption("patching_group", 'SN2L', 'SN2L', 10);
+            g_form.addOption("patching_group", 'SN3L', 'SN3L', 11);
+            g_form.addOption("patching_group", 'SN4L', 'SN4L', 12);
 
         }
+
     }
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
@@ -89,15 +79,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>999db738876395109839fd57dabb3553</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Populate New Patch Group</sys_name>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Modify Patch Populate New Patch Group</sys_name>
         <sys_overrides/>
         <sys_package display_value="KCNS-CT-ServiceCatalogs" source="5aa8c70087a3d1109839fd57dabb355a">5aa8c70087a3d1109839fd57dabb355a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>catalog_script_client_999db738876395109839fd57dabb3553</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:36:29</sys_updated_on>
+        <sys_updated_on>2022-12-29 06:35:30</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

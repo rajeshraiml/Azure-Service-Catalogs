@@ -15,9 +15,11 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="sc_task">short_descriptionLIKEAuto-Provisioning Task^state=2^NQwork_notesVALCHANGES^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="LIKE" or="false" value="Auto-Provisioning Task"/>
-            <item display_value="Work in Progress" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="2"/>
-            <item endquery="false" field="work_notes" goto="false" newquery="true" operator="VALCHANGES" or="false" value=""/>
+        <filter_condition table="sc_task">short_descriptionLIKEAuto-Provisioning Task^stateCHANGESTO2^NQshort_descriptionLIKEAuto-Provisioning Task^state=1^work_notesVALCHANGES^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="LIKE" or="false" value="Auto-Provisioning Task"/>
+            <item display_value="Work in Progress" endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="2"/>
+            <item endquery="false" field="short_description" goto="false" newquery="true" operator="LIKE" or="false" value="Auto-Provisioning Task"/>
+            <item display_value="Open" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="1"/>
+            <item endquery="false" field="work_notes" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
@@ -36,46 +38,366 @@
         // Add your code here
         var item = new RITMVariablesUtil();
         var data = item.getVariables(current.request_item, true, true);
+        var subscription = "";
+        var resource_group = "";
+        var region = "";
+        var environment = "";
+        var reference_vm = "";
+        var managed = "";
+        var business_service = "";
+        var service_owner = "";
+        var vm_name = "";
+        var vm_size = "";
+        var image = "";
+        var availability_zone = "";
+        var virtual_network = "";
+        var subnet = "";
+        var os = "";
+        var backup_required = "";
+        var time_zone = "";
+        var patching_group = "";
+        var enable_auto_shutdown = "";
+        var managed_identity = "";
+        var service_principle_name = "";
+        var admin_sudo_access_1 = "";
+        var admin_sudo_access_2 = "";
+        var admin_sudo_access_3 = "";
+        var notes = "";
+        var additional_disks = "";
+        var accelerated_networking = "";
+        var boot_diagnostics = "";
+        var os_guest_diagnostics = "";
+        var tasknumber = "";
+        var tags = "";
+        var os_disk_type = "";
+        var data_disk_type = "";
+        var data_disk_name = "";
+        var data_disk_size_gb = "";
+        var data_disk_source_type = "";
+        var data_disk_windows_drive_letter = "";
+        var data_disk_windows_disk_label = "";
         var payload = '{';
         var temp = '{';
+        /*
         for (var i = 0; i < data.length; i++) {
             if (data[i].name.toString() != 'Additional Disks') {
                 temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',';
             } else {
-                temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',';
+                temp = temp + '"additional_disks":' + JSON.stringify(data[i].value) + ',';
 
 
             }
+        }*/
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (data[i].name == 'subscription') {
+
+                if (data[i].value == "") {
+                    subscription = "NA";
+                } else {
+                    subscription = data[i].value;
+
+                }
+            } else if (data[i].name == 'resource_group') {
+
+                if (data[i].value == "") {
+                    resource_group = "NA";
+                } else {
+                    resource_group = data[i].value;
+
+                }
+            } else if (data[i].name == 'region') {
+                if (data[i].value == "") {
+                    region = "NA";
+                } else {
+                    region = data[i].value;
+
+                }
+            } else if (data[i].name == 'environment') {
+                if (data[i].value == "") {
+                    environment = "NA";
+                } else {
+                    environment = data[i].value;
+
+                }
+            } else if (data[i].name == 'reference_vm') {
+                if (data[i].value == "") {
+                    reference_vm = "NA";
+                } else {
+                    reference_vm = data[i].value;
+
+                }
+            } else if (data[i].name == 'managed') {
+                if (data[i].value == "") {
+                    managed = "NA";
+                } else {
+                    managed = data[i].value;
+
+                }
+            } else if (data[i].name == 'business_service') {
+                if (data[i].value == "") {
+                    business_service = "NA";
+                } else {
+                    business_service = data[i].value;
+
+                }
+            } else if (data[i].name == 'service_owner') {
+                if (data[i].value == "") {
+                    service_owner = "NA";
+                } else {
+                    service_owner = data[i].value;
+
+                }
+            } else if (data[i].name == 'vm_name') {
+                if (data[i].value == "") {
+                    vm_name = "NA";
+                } else {
+                    vm_name = data[i].value;
+
+                }
+            } else if (data[i].name == 'vm_size') {
+                if (data[i].value == "") {
+                    vm_size = "NA";
+                } else {
+                    vm_size = data[i].value;
+
+                }
+            } else if (data[i].name == 'image') {
+                if (data[i].value == "") {
+                    image = "NA";
+                } else {
+                    image = data[i].value;
+
+                }
+            } else if (data[i].name == 'availability_zone') {
+                if (data[i].value == "") {
+                    availability_zone = "NA";
+                } else {
+                    availability_zone = data[i].value;
+
+                }
+            } else if (data[i].name == 'virtual_network') {
+                if (data[i].value == "") {
+                    virtual_network = "NA";
+                } else {
+                    virtual_network = data[i].value;
+
+                }
+            } else if (data[i].name == 'subnet') {
+                if (data[i].value == "") {
+                    subnet = "NA";
+                } else {
+                    subnet = data[i].value;
+
+                }
+            } else if (data[i].name == 'os') {
+                if (data[i].value == "") {
+                    os = "NA";
+                } else {
+                    os = data[i].value;
+
+                }
+            } else if (data[i].name == 'backup_required') {
+                if (data[i].value == "") {
+                    backup_required = "NA";
+                } else {
+                    backup_required = data[i].value;
+
+                }
+            } else if (data[i].name == 'time_zone') {
+                if (data[i].value == "") {
+                    time_zone = "NA";
+                } else {
+                    time_zone = data[i].value;
+
+                }
+            } else if (data[i].name == 'enable_auto_shutdown') {
+                if (data[i].value == "") {
+                    enable_auto_shutdown = "NA";
+                } else {
+                    enable_auto_shutdown = data[i].value;
+
+                }
+            } else if (data[i].name == 'managed_identity') {
+                if (data[i].value == "") {
+                    managed_identity = "NA";
+                } else {
+                    managed_identity = data[i].value;
+
+                }
+            } else if (data[i].name == 'service_principle_name') {
+                if (data[i].value == "") {
+                    service_principle_name = "NA";
+                } else {
+                    service_principle_name = data[i].value;
+
+                }
+            } else if (data[i].name == 'admin_sudo_access_1') {
+                if (data[i].value == "") {
+                    admin_sudo_access_1 = "NA";
+                } else {
+                    admin_sudo_access_1 = data[i].value;
+
+                }
+
+            } else if (data[i].name == 'admin_sudo_access_2') {
+                if (data[i].value == "") {
+                    admin_sudo_access_2 = "NA";
+                } else {
+                    admin_sudo_access_2 = data[i].value;
+
+                }
+            } else if (data[i].name == 'admin_sudo_access_3') {
+                if (data[i].value == "") {
+                    admin_sudo_access_3 = "NA";
+                } else {
+                    admin_sudo_access_3 = data[i].value;
+
+                }
+            } else if (data[i].name == 'notes') {
+                if (data[i].value == "") {
+                    notes = "NA";
+                } else {
+                    notes = data[i].value;
+
+                }
+            }/* else if (data[i].name == 'tags') {
+                temptags = item.getTags(current.request_item.sys_id);
+
+                if (tags == "") {
+                    tags = "NA";
+                } else {
+                    tags = JSON.stringify(temptags);
+
+                }
+            }*/ else if (data[i].name == 'os_disk_type') {
+                gs.log("data[i].name os_disk_type : " + data[i].value)
+                if (data[i].value == "") {
+                    os_disk_type = "NA";
+                } else {
+                    os_disk_type = data[i].value;
+
+                }
+
+            } else if (data[i].name == 'patching_group') {
+                if (data[i].value == "") {
+                    patching_group = "NA";
+                } else {
+                    patching_group = data[i].value;
+
+                }
+            } else if (data[i].name == 'Additional Disks') {
+                if (data[i].value == "") {
+                    additional_disks = "NA";
+                } else {
+                    disks = data[i].value;
+                    diskdata = disks[0];
+					additional_disks = "NA";
+                    data_disk_type = diskdata.data_disk_type;
+                    data_disk_name = diskdata.data_disk_name;
+                    data_disk_size_gb = diskdata.data_disk_size_gb;
+                    data_disk_source_type = diskdata.data_disk_source_type;
+                    data_disk_windows_drive_letter = diskdata.data_disk_windows_drive_letter;
+                    data_disk_windows_disk_label = diskdata.data_disk_windows_disk_label;
+                }
+
+
+
+            }
+
         }
 
         temp = temp + '"accelerated_networking":"enable",';
         temp = temp + '"boot_diagnostics":"On",';
         temp = temp + '"os_guest_diagnostics":"On",';
+        temp = temp + '"tasknumber":"' + current.number + '",';
 
-        var tags = item.getTags(current.request_item.sys_id);
+        var tags1 = item.getTags(current.request_item.sys_id);
         temp = temp + '"tags"' + ":" + JSON.stringify(tags);
         temp = temp + '}';
 
         payload = payload + '"templateParameters":' + temp + '}';
 
+        var payload1 = {
+            "templateParameters": {
+                "subscription": "66559717-deb7-4cac-a99f-e2d2203c4987",
+                "resource_group": "rg-kcns-costco-initiative",
+                "region": "eastus",
+                "environment": "poc"
+            }
+        };
+
+        var finalPayload = {
+            "templateParameters": {
+                "subscription": subscription,
+                "resource_group": resource_group,
+                "region": region,
+                "environment": environment,
+                "reference_vm": reference_vm,
+                "managed": managed,
+                "business_service": business_service,
+                "service_owner": service_owner,
+                "os_disk_type": data_disk_type,
+                "vm_name": vm_name,
+                "vm_size": vm_size,
+                "image": image,
+                "availability_zone": availability_zone,
+                "virtual_network": virtual_network,
+                "subnet": subnet,
+                "os": os,
+                "backup_required": backup_required,
+                "time_zone": time_zone,
+                "patching_group": patching_group,
+                "enable_auto_shutdown": enable_auto_shutdown,
+                "managed_identity": managed_identity,
+                "service_principle_name": service_principle_name,
+                "admin_sudo_access_1": admin_sudo_access_1,
+                "admin_sudo_access_2": admin_sudo_access_2,
+                "admin_sudo_access_3": admin_sudo_access_3,
+                //"note": notes,
+               // "additional_disks": additional_disks,
+                "accelerated_networking": "enable",
+                "boot_diagnostics": "On",
+                "os_guest_diagnostics": "On",
+                //"tasknumber": current.number.getDisplayValue(),
+                //"tags": tags,
+                "data_disk_type": data_disk_type,
+                "data_disk_name": data_disk_name,
+                "data_disk_size_gb": data_disk_size_gb,
+                "data_disk_source_type": data_disk_source_type,
+                "data_disk_windows_drive_letter": data_disk_windows_drive_letter,
+                "data_disk_windows_disk_label": data_disk_windows_disk_label,
+				"data_disk_linux_fs_label":"NA"
+            }
+        }
+
         var msg = "Pipeline Details ";
         var restMsgName = 'Azure_Windows_Linux_Rest_Message';
         var request = new sn_ws.RESTMessageV2(restMsgName, 'triggerVMProvisioningPipeline');
 
-        var usename = gs.getProperty('devops.pipeline.user');
-        var token = gs.getProperty('devops.pipeline.token');
+       // var usename = gs.getProperty('devops.pipeline.user');
+       // var token = gs.getProperty('devops.pipeline.token');
+
+        var usename = gs.getProperty('devops.pipeline.user.anand');
+        var token = gs.getProperty('devops.pipeline.token.anand');
 
         var devopsuser = usename + ':' + token;
 
-        msg = msg + "\ndevopsuser :" + devopsuser;
+        // msg = msg + "\ndevopsuser :" + devopsuser;
 
         var organization = gs.getProperty('pipeline.vm.organization');
-        var project = gs.getProperty('pipeline.vm.project');
-        project = project.replaceAll(" ", "%20");
+        var project = gs.getProperty('pipeline.vm.project');        
         var pipelineId = gs.getProperty('pipeline.vm.pipelineid');
-        msg = msg + "\norganization :" + organization;
-        msg = msg + "\nproject :" + project;
-        msg = msg + "\npipelineId :" + pipelineId;
+        
+		//var organization = gs.getProperty('pipeline.vm.organization.anand');
+        //var project = gs.getProperty('pipeline.vm.project.anand');        
+        //var pipelineId = gs.getProperty('pipeline.vm.pipelineid.anand');
+		
+		project = project.replaceAll(" ", "%20");
+        // msg = msg + "\norganization :" + organization;
+        // msg = msg + "\nproject :" + project;
+        // msg = msg + "\npipelineId :" + pipelineId;
 
         request.setStringParameterNoEscape('organization', organization);
         request.setStringParameterNoEscape('project', project);
@@ -83,18 +405,19 @@
 
         var encodedAuth = GlideStringUtil.base64Encode(devopsuser);
         //request.setBasicAuth('<username>', '<password>');
-        msg = msg + "\nencodedAuth :" + encodedAuth;
+        // msg = msg + "\nencodedAuth :" + encodedAuth;
 
         request.setRequestHeader("Accept", "Application/json");
         request.setRequestHeader("Content-Type", "application/json");
         request.setRequestHeader("Authorization", "Basic " + encodedAuth);
-        request.setRequestBody(payload);
+        //request.setRequestBody(JSON.stringify(payload1));
+		request.setRequestBody(JSON.stringify(finalPayload));
 
         var endpoint = request.getEndpoint();
         var response = request.execute();
         var httpStatus = response.getStatusCode();
 
-        msg = msg + '\nendpoint :' + endpoint + '\nResponse :' + response.getBody() + '\nstatus : ' + httpStatus;
+        msg = msg + '\n\nendpoint :' + endpoint + '\n\nResponse :' + response.getBody() + '\n\nstatus : ' + httpStatus;
 
         if (httpStatus == 200 || httpStatus == 201) {
             var responseBody = response.getBody();
@@ -103,16 +426,19 @@
 
             gs.log('responseBody :' + responseBody);
 
-            msg = msg + '\nresponseBody :' + responseBody;
+            // msg = msg + '\n\nresponseBody :' + responseBody;
 
         } else {
+            current.state = 1;
+            msg = msg + '\n\nresponseBody :' + responseBody + '\n\nFailed to Submit Request!!';
+
             gs.log('Error : KCNS-Trigger-LogicApp-VMBuild' + response.getBody() + 'status : ' + httpStatus);
 
         }
 
 
         gs.info('BR : KCNS-Trigger-LogicApp-VMBuild payload : ', payload);
-        current.work_notes = 'BR : KCNS-Trigger-LogicApp-VMBuild payload :\n\n' + payload + '\n' + msg;
+        current.work_notes = 'BR : KCNS-Trigger-LogicApp-VMBuild payload :\n\n' + payload + '\n' + msg + '\n\n finalPayload' + JSON.stringify(finalPayload);
         current.update();
     } catch (e) {
         current.work_notes = 'BR : KCNS-Trigger-LogicApp-VMBuild exception :\n\n' + e;
@@ -126,7 +452,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>24215220872f15109839fd57dabb353f</sys_id>
-        <sys_mod_count>37</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>KCNS-Trigger-LogicApp-VMBuild</sys_name>
         <sys_overrides/>
         <sys_package display_value="Global" source="global">global</sys_package>
@@ -134,7 +460,7 @@
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_24215220872f15109839fd57dabb353f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-09 07:13:54</sys_updated_on>
+        <sys_updated_on>2023-01-05 06:36:41</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>
