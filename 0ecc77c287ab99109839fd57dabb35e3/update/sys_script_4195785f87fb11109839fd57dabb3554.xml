@@ -3,7 +3,7 @@
         <abort_action>false</abort_action>
         <access>package_private</access>
         <action_delete>false</action_delete>
-        <action_insert>false</action_insert>
+        <action_insert>true</action_insert>
         <action_query>false</action_query>
         <action_update>true</action_update>
         <active>true</active>
@@ -38,6 +38,7 @@
         // Add your code here
         var msg = "BR : KCNS-Trigger-LogicApp-SchedulePatch";
         var item = new RITMVariablesUtil();
+		var rg='';
         var data = item.getVariables(current.request_item, true, true);
         var properyData = JSON.parse(gs.getProperty('temp.patching.json'));
         var os_type = '';
@@ -48,6 +49,9 @@
         temp = temp + '"URL":"' + properyData.url + '",\n';
         temp = temp + '"automationAccountName":"' + properyData.automationAccountName + '",\n';
         temp = temp + '"tasknumber":"' + current.number + '",\n';
+		temp = temp + '"sysid":"' + current.sys_id.toString() + '",\n';		
+		temp = temp + '"environment":"' + properyData.environment + '",\n';
+		temp = temp + '"VM_Type":"' + properyData.VM_Type + '",\n';
 
         for (var i = 0; i < data.length; i++) {
 
@@ -56,6 +60,8 @@
 
             } else if (data[i].name == 'resource_group') {
                 temp = temp + '"resourceGroupName":"' + data[i].value + '",\n';
+				rg =  data[i].value;
+				temp = temp + '"targets_rg_list":[' + JSON.stringify(data[i].value) + '],\n';
 
             } else if (data[i].name == 'os_type') {
                 os_type = data[i].value;
@@ -93,29 +99,58 @@
 
             } else if (data[i].name == 'patch_included') {
                 //temp = temp + '"include_Package":[' + data[i].value + '],';
-				temp = temp + '"include_Package":["KB5017308","KB5017231","KB5017110"],\n';
+				
+				if (os_type == 'Windows') {
+					          
+                    temp = temp + '"include_Package":["KB5011435","KB5012356"],\n';
+
+                } else {
+                    temp = temp + '"include_Package":[ "apt-get upgrade","sqlite-3.3.6-7"],\n';
+                }
+				
+				
+				
             } else if (data[i].name == 'patch_excluded') {
-                //temp = temp + '"exclude_Package":[' + data[i].value + '],';
-				temp = temp + '"exclude_Package":["KB5011435","KB5012356"],\n';
+                //temp = temp + '"exclude_Package":[' + data[i].value + '],';								
+				
+				if (os_type == 'Windows') {
+					          
+                    temp = temp + '"exclude_Package":[""],\n';
+
+                } else {
+                    temp = temp + '"exclude_Package":["kernel *"],\n';
+                }
 
             } else if (data[i].name == 'vm_list') {
-                temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
+               // temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
+				// temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
+				newrg = '"'+rg+'"'
+				temp = temp + '"vms":{'+JSON.stringify(data[i].value)+':'+newrg+'},\n';
 
             } else if (data[i].name == 'scheduled_end_date' || data[i].name == 'end_time') {
 				
-			} else {
+			} else if (data[i].name == 'patch_group'){
+				temp = temp + '"targets_tag_list":{ "PatchGroup":'+JSON.stringify(data[i].value)+'},\n';
+				
+			}else {
                 temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',\n';
             }
 
 
 
         }
-
+ 
+		
+		temp = temp + '"targets_location_list":[ "eastus","westeurope"],\n';
+		
+			
         temp = temp + '"duration":"' + properyData.duration + '",\n';
+		temp = temp + '"time_zone_hours":"' + properyData.time_zone_hours + '",\n';
         temp = temp + '"pre_task_name":"' + properyData.pre_task_name + '",\n';
         temp = temp + '"pre_task_parameters":"' + properyData.pre_task_parameters + '",\n';
         temp = temp + '"post_task_name":"' + properyData.post_task_name + '",\n';
         temp = temp + '"post_task_parameters":"' + properyData.pre_task_parameters + '"\n}';
+		
 		
         var git = new GitHubUploadUtil();
         httpStatus = git.uploadFile(current.number + '.json', temp);
@@ -201,7 +236,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>4195785f87fb11109839fd57dabb3554</sys_id>
-        <sys_mod_count>49</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>KCNS-Trigger-LogicApp-SchedulePatch</sys_name>
         <sys_overrides/>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
@@ -209,7 +244,7 @@
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_4195785f87fb11109839fd57dabb3554</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-02 08:48:47</sys_updated_on>
+        <sys_updated_on>2023-01-13 06:16:18</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

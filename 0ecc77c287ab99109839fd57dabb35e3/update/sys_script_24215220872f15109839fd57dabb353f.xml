@@ -76,6 +76,8 @@
         var data_disk_source_type = "";
         var data_disk_windows_drive_letter = "";
         var data_disk_windows_disk_label = "";
+        var sysid = "";
+        var instana = "";
         var payload = '{';
         var temp = '{';
         /*
@@ -163,6 +165,14 @@
                     vm_size = data[i].value;
 
                 }
+            } else if (data[i].name == 'instana') {
+                if (data[i].value == "") {
+                    instana = "NA";
+                } else {
+                    instana = data[i].value;
+
+                }
+
             } else if (data[i].name == 'image') {
                 if (data[i].value == "") {
                     image = "NA";
@@ -262,16 +272,20 @@
                     notes = data[i].value;
 
                 }
-            }/* else if (data[i].name == 'tags') {
-                temptags = item.getTags(current.request_item.sys_id);
 
-                if (tags == "") {
-                    tags = "NA";
-                } else {
-                    tags = JSON.stringify(temptags);
 
-                }
-            }*/ else if (data[i].name == 'os_disk_type') {
+            }
+            /* else if (data[i].name == 'tags') {
+                            temptags = item.getTags(current.request_item.sys_id);
+
+                            if (tags == "") {
+                                tags = "NA";
+                            } else {
+                                tags = JSON.stringify(temptags);
+
+                            }
+                        }*/
+            else if (data[i].name == 'os_disk_type') {
                 gs.log("data[i].name os_disk_type : " + data[i].value)
                 if (data[i].value == "") {
                     os_disk_type = "NA";
@@ -293,7 +307,7 @@
                 } else {
                     disks = data[i].value;
                     diskdata = disks[0];
-					additional_disks = "NA";
+                    additional_disks = "NA";
                     data_disk_type = diskdata.data_disk_type;
                     data_disk_name = diskdata.data_disk_name;
                     data_disk_size_gb = diskdata.data_disk_size_gb;
@@ -334,7 +348,7 @@
                 "resource_group": resource_group,
                 "region": region,
                 "environment": environment,
-                "reference_vm": reference_vm,
+                //"reference_vm": reference_vm,
                 "managed": managed,
                 "business_service": business_service,
                 "service_owner": service_owner,
@@ -355,12 +369,14 @@
                 "admin_sudo_access_1": admin_sudo_access_1,
                 "admin_sudo_access_2": admin_sudo_access_2,
                 "admin_sudo_access_3": admin_sudo_access_3,
-                //"note": notes,
-               // "additional_disks": additional_disks,
+                "notes": "NA",
+                // "additional_disks": additional_disks,
                 "accelerated_networking": "enable",
                 "boot_diagnostics": "On",
                 "os_guest_diagnostics": "On",
-                //"tasknumber": current.number.getDisplayValue(),
+                "tasknumber": current.number.getDisplayValue(),
+                "sysid": current.sys_id.toString(),
+                "instana_agent": instana,
                 //"tags": tags,
                 "data_disk_type": data_disk_type,
                 "data_disk_name": data_disk_name,
@@ -368,7 +384,7 @@
                 "data_disk_source_type": data_disk_source_type,
                 "data_disk_windows_drive_letter": data_disk_windows_drive_letter,
                 "data_disk_windows_disk_label": data_disk_windows_disk_label,
-				"data_disk_linux_fs_label":"NA"
+                "data_disk_linux_fs_label": "NA"
             }
         }
 
@@ -376,8 +392,8 @@
         var restMsgName = 'Azure_Windows_Linux_Rest_Message';
         var request = new sn_ws.RESTMessageV2(restMsgName, 'triggerVMProvisioningPipeline');
 
-       // var usename = gs.getProperty('devops.pipeline.user');
-       // var token = gs.getProperty('devops.pipeline.token');
+        // var usename = gs.getProperty('devops.pipeline.user');
+        // var token = gs.getProperty('devops.pipeline.token');
 
         var usename = gs.getProperty('devops.pipeline.user.anand');
         var token = gs.getProperty('devops.pipeline.token.anand');
@@ -387,14 +403,14 @@
         // msg = msg + "\ndevopsuser :" + devopsuser;
 
         var organization = gs.getProperty('pipeline.vm.organization');
-        var project = gs.getProperty('pipeline.vm.project');        
+        var project = gs.getProperty('pipeline.vm.project');
         var pipelineId = gs.getProperty('pipeline.vm.pipelineid');
-        
-		//var organization = gs.getProperty('pipeline.vm.organization.anand');
+
+        //var organization = gs.getProperty('pipeline.vm.organization.anand');
         //var project = gs.getProperty('pipeline.vm.project.anand');        
         //var pipelineId = gs.getProperty('pipeline.vm.pipelineid.anand');
-		
-		project = project.replaceAll(" ", "%20");
+
+        project = project.replaceAll(" ", "%20");
         // msg = msg + "\norganization :" + organization;
         // msg = msg + "\nproject :" + project;
         // msg = msg + "\npipelineId :" + pipelineId;
@@ -411,7 +427,7 @@
         request.setRequestHeader("Content-Type", "application/json");
         request.setRequestHeader("Authorization", "Basic " + encodedAuth);
         //request.setRequestBody(JSON.stringify(payload1));
-		request.setRequestBody(JSON.stringify(finalPayload));
+        request.setRequestBody(JSON.stringify(finalPayload));
 
         var endpoint = request.getEndpoint();
         var response = request.execute();
@@ -452,7 +468,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>24215220872f15109839fd57dabb353f</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>99</sys_mod_count>
         <sys_name>KCNS-Trigger-LogicApp-VMBuild</sys_name>
         <sys_overrides/>
         <sys_package display_value="Global" source="global">global</sys_package>
@@ -460,7 +476,7 @@
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_script_24215220872f15109839fd57dabb353f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-05 06:36:41</sys_updated_on>
+        <sys_updated_on>2023-01-11 11:50:19</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>
