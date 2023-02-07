@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
     <sys_rest_message_fn_headers action="INSERT_OR_UPDATE">
-        <name>Authorization</name>
-        <rest_message_function display_value="getLinuxPatchListjson">5f233e9d879ca5109839fd57dabb3558</rest_message_function>
+        <name>Content-Type</name>
+        <rest_message_function display_value="triggerSchedulePatchingPipeline">d1a3845787e425109839fd57dabb3595</rest_message_function>
         <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-01-09 08:38:50</sys_created_on>
-        <sys_id>427376d9879ca5109839fd57dabb3507</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>Authorization</sys_name>
+        <sys_created_on>2023-01-27 11:17:32</sys_created_on>
+        <sys_id>bda3ccd387e425109839fd57dabb3555</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Content-Type</sys_name>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
-        <sys_update_name>sys_rest_message_fn_headers_427376d9879ca5109839fd57dabb3507</sys_update_name>
+        <sys_update_name>sys_rest_message_fn_headers_bda3ccd387e425109839fd57dabb3555</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-24 08:32:57</sys_updated_on>
-        <value>Bearer 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</value>
+        <sys_updated_on>2023-01-27 11:17:32</sys_updated_on>
+        <value>application/json, application/json-patch+json</value>
     </sys_rest_message_fn_headers>
 </record_update>
