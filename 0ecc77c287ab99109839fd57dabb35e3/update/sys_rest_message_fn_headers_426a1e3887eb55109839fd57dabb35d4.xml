@@ -6,14 +6,11 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 10:46:34</sys_created_on>
         <sys_id>426a1e3887eb55109839fd57dabb35d4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
         <sys_name>Content-type</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_rest_message_fn_headers_426a1e3887eb55109839fd57dabb35d4</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
         <value>application/json</value>
     </sys_rest_message_fn_headers>
     <sys_claim action="INSERT_OR_UPDATE">
@@ -26,8 +23,5 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-07 04:30:29</sys_created_on>
         <sys_id>247e7fa287e71d109839fd57dabb351c</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
     </sys_claim>
 </record_update>

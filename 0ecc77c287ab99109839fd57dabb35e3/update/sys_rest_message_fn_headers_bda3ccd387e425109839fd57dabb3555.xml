@@ -6,14 +6,11 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-27 11:17:32</sys_created_on>
         <sys_id>bda3ccd387e425109839fd57dabb3555</sys_id>
-        <sys_mod_count>0</sys_mod_count>
         <sys_name>Content-Type</sys_name>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_rest_message_fn_headers_bda3ccd387e425109839fd57dabb3555</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-27 11:17:32</sys_updated_on>
         <value>application/json, application/json-patch+json</value>
     </sys_rest_message_fn_headers>
 </record_update>

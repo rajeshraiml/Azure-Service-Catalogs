@@ -33,15 +33,12 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37a92734872395109839fd57dabb3587</sys_id>
-        <sys_mod_count>3</sys_mod_count>
         <sys_name>Make Filed Invisable Provisioning VM Catalog</sys_name>
         <sys_overrides/>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>catalog_ui_policy_37a92734872395109839fd57dabb3587</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-12 14:58:46</sys_updated_on>
         <table/>
         <ui_type>0</ui_type>
         <variable_set/>
@@ -57,8 +54,5 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-07 04:37:38</sys_created_on>
         <sys_id>0910083687e71d109839fd57dabb350f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:37:38</sys_updated_on>
     </sys_claim>
 </record_update>

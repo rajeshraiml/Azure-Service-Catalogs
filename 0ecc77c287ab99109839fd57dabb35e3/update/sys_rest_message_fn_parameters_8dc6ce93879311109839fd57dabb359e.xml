@@ -6,14 +6,11 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-26 17:27:42</sys_created_on>
         <sys_id>8dc6ce93879311109839fd57dabb359e</sys_id>
-        <sys_mod_count>1</sys_mod_count>
         <sys_name>subscriptionId</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_rest_message_fn_parameters_8dc6ce93879311109839fd57dabb359e</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
         <type>string</type>
         <value>43c731d7-291f-4c26-86e6-4e29c8a054c7</value>
     </sys_rest_message_fn_parameters>
@@ -27,8 +24,5 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-07 04:30:29</sys_created_on>
         <sys_id>907e3fa287e71d109839fd57dabb35ee</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-07 04:30:29</sys_updated_on>
     </sys_claim>
 </record_update>

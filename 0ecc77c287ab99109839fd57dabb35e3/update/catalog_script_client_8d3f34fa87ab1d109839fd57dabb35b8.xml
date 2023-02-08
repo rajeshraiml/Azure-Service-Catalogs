@@ -84,15 +84,12 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8d3f34fa87ab1d109839fd57dabb35b8</sys_id>
-        <sys_mod_count>12</sys_mod_count>
         <sys_name>Populate Driver Letters</sys_name>
         <sys_overrides/>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>catalog_script_client_8d3f34fa87ab1d109839fd57dabb35b8</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-13 09:24:06</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>10</ui_type>

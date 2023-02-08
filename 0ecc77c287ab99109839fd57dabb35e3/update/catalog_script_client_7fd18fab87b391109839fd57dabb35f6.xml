@@ -77,15 +77,12 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>7fd18fab87b391109839fd57dabb35f6</sys_id>
-        <sys_mod_count>4</sys_mod_count>
         <sys_name>Scheduled Patch Populate PatchList</sys_name>
         <sys_overrides/>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>catalog_script_client_7fd18fab87b391109839fd57dabb35f6</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 13:14:25</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

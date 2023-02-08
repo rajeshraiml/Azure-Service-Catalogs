@@ -6,14 +6,11 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-12 14:33:15</sys_created_on>
         <sys_id>ad583f9c87fb91509839fd57dabb35ec</sys_id>
-        <sys_mod_count>0</sys_mod_count>
         <sys_name>subnetName</sys_name>
         <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_rest_message_fn_parameters_ad583f9c87fb91509839fd57dabb35ec</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-12 14:33:15</sys_updated_on>
         <type>string</type>
         <value/>
     </sys_rest_message_fn_parameters>
