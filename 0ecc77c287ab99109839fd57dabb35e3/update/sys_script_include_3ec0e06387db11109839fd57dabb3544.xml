@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.ITDQUERYAZURERESOURCES</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ITDQUERYAZURERESOURCES</name>
+        <script><![CDATA[var ITDQUERYAZURERESOURCES = Class.create();
+ITDQUERYAZURERESOURCES.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    getSubscriptions: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getSubscriptions');
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var subscriptions = '';
+                gs.log('Location responseBody :' + responseBody);
+                for (var key in parsed['value']) {
+                    subscriptions = parsed['value'][key]['subscriptionId'] + '#' + parsed['value'][key]['displayName'] + '|' + subscriptions;
+                }
+
+                // gs.log('subscriptions   getSubscriptions: ' + subscriptions);
+            } else {
+                gs.log('Error : getSubscriptions' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No Subscriptions Available catch line Exception : " + ex);
+        }
+        return subscriptions;
+    },
+
+    getResourceGroups: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getResourcegroup');
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var resourceGroups = '';
+                gs.log('Location responseBody :' + responseBody);
+                for (var key in parsed['value']) {
+                    //resourceGroups = ((parsed['value'][key]['name'])) + '|' + resourceGroups;
+                    resourceGroups = parsed['value'][key]['name'] + '|' + resourceGroups;
+                }
+
+                // gs.log('ResourceGroup  resourceGroups : ' + resourceGroups);
+            } else {
+                gs.log('Error : getResourceGroups' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No Resourse group Available catch line Exception : " + ex);
+        }
+        return resourceGroups;
+    },
+    getVMSizeNames: function() {
+
+        try {
+            var locationName = this.getParameter('sysparm_locationName').toString();
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            // var resourceGrpId = this.getParameter('sysparm_resourceGrpId').toString();
+            var restMsgName = 'Azure_Windows_Linux_Rest_Message';
+
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getVMSizes');
+            request.setStringParameter('location', locationName);
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            // request.setStringParameterNoEscape('resourceGrpId', resourceGrpId);
+            var endpoint = request.getEndpoint();
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var vmSizeNames = '';
+                for (var key in parsed['value']) {
+                    vmSizeNames = ((parsed['value'][key]['name'])) + '|' + vmSizeNames;
+                }
+            } else {
+                vmSizeNames = 'No VMSizes Available for Region :' + locationName;
+                gs.log('No VMSizes Available for Region :' + locationName);
+            }
+        } catch (ex) {
+            gs.info("No VMSizes Available catch line Exception : " + ex + "\nResponse : " + JSON.stringify(response) + "\nhttpstatus :" + httpStatus);
+        }
+        return vmSizeNames;
+    },
+    getVirtualNetworks: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getVnetList');
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var resourceGroups = '';
+                gs.log('Location responseBody :' + responseBody);
+                for (var key in parsed['value']) {
+                    // resourceGroups = ((parsed['value'][key]['name'])) + '|' + resourceGroups;
+                    resourceGroups = parsed['value'][key]['name'] + '|' + resourceGroups;
+                }
+
+                // gs.log('ResourceGroup  resourceGroups : ' + resourceGroups);
+            } else {
+                gs.log('Error : getResourceGroups' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No getVirtualNetworks Available catch line Exception : " + ex + "\nResponse : " + JSON.stringify(response) + "\nhttpstatus :" + httpStatus);
+        }
+        return resourceGroups;
+    },
+    getReferenceVMS: function() {
+
+        try {
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var resourcegroup = this.getParameter('sysparm_resourcegroup').toString();
+
+            var restMsgName = 'Azure_Windows_Linux_Rest_Message';
+
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getReferenceVM');
+
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            request.setStringParameterNoEscape('resourcegroup', resourcegroup);
+            var endpoint = request.getEndpoint();
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var vmNames = '';
+                for (var key in parsed['data']) {
+                    vmNames = ((parsed['data'][key]['name'])) + '|' + vmNames;
+                }
+            } else {
+                gs.log('No vmNames Available ');
+            }
+        } catch (ex) {
+            gs.info("No vmNames Available catch line Exception : " + ex + "\nResponse : " + JSON.stringify(response) + "\nhttpstatus :" + httpStatus);
+        }
+        return vmNames;
+    },
+    getRegionLists: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getLocations');
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var regionList = '';
+
+                for (var key in parsed['value']) {
+                    regionList = parsed['value'][key]['name'] + '#' + parsed['value'][key]['displayName'] + '|' + regionList;
+                }
+                gs.log('regionList  : ' + regionList);
+            } else {
+                gs.log('Error : getRegionLists' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No regionList Available catch line Exception : " + ex);
+        }
+        return regionList;
+    },
+    generateHostname: function() {
+
+        var region = this.getParameter('sysparm_region').toString();
+        var env = this.getParameter('sysparm_environment').toString();
+        var bs = this.getParameter('sysparm_bs').toString();
+
+        var prefix = gs.getProperty('Hostname Prefix');
+        var hostname = prefix+env +region.toString();
+        hostname = hostname.replace(' ', '');
+        hostname = hostname.substring(0, 10);
+        return hostname.toLowerCase();
+
+    },
+    getSubnetLists: function() {
+        try {
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var resourcegroup = this.getParameter('sysparm_resourcegroup').toString();
+            var virtual_network = this.getParameter('sysparm_virtual_network').toString();
+
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getSubnetList');
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            request.setStringParameterNoEscape('resourceGrpId', resourcegroup);
+            request.setStringParameterNoEscape('virtualNwName', virtual_network);
+
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var subnetlist = '';
+                var sub = parsed['value'];
+
+                for (var key in sub) {
+                    subnetlist = (sub[key]['name']) + '|' + subnetlist;
+                }
+                gs.log('subnetlist  : ' + regionList);
+            } else {
+                gs.log('Error : getSubnetLists' + response.getBody() + 'status : ' + httpStatus);
+
+            }
+        } catch (ex) {
+            gs.info("No Subnetlist Available catch line Exception : " + ex);
+        }
+        return subnetlist;
+    },
+
+    getOSdetails: function() {
+
+        try {
+            var str = this.getParameter('sysparm_img').toString();
+            var osdetails = '';
+            if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2012"))) {
+                osdetails = 'Windows';
+
+            } else if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2016"))) {
+                osdetails = 'Windows';
+
+
+            } else if ((str.includes("windows") || str.includes("Windows ") || str.includes("Win")) && (str.includes("2019"))) {
+                osdetails = 'Windows';
+
+            } else if ((str.includes("Red Hat Enterprise Linux 6") || str.includes("RHEL 6") || str.includes("Linux 6") || str.includes("RHEL6") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("6"))) {
+                osdetails = 'Linux';
+
+            } else if ((str.includes("Red Hat Enterprise Linux 7") || str.includes("Linux 7") || str.includes("RHEL7") || str.includes("RHEL-7") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("7"))) {
+                osdetails = 'Linux';
+
+
+            } else if ((str.includes("Red Hat Enterprise Linux 8") || str.includes("Linux 8") || str.includes("RHEL8") || str.includes("RHEL 8") || str.includes("RHEL") || str.includes("Red Hat Enterprise Linux")) && (str.includes("8"))) {
+                osdetails = 'Linux';
+
+
+            }
+            return osdetails;
+        } catch (e) {
+            return e;
+        }
+    },
+    getPatchVMList: function() {
+
+        try {
+            var subscriptionId = this.getParameter('sysparm_subscriptionId').toString();
+            var resourcegroup = this.getParameter('sysparm_resourcegroup').toString();
+			var patchgroup = this.getParameter('sysparm_patchgroup').toString();
+
+            var restMsgName = 'Azure_Windows_Linux_Rest_Message';
+
+            var request = new sn_ws.RESTMessageV2(restMsgName, 'getPatchVMList');
+
+            request.setStringParameterNoEscape('subscriptionId', subscriptionId);
+            request.setStringParameterNoEscape('resourcegroup', resourcegroup);
+			request.setStringParameterNoEscape('patch_group', patchgroup);
+            var endpoint = request.getEndpoint();
+            var response = request.execute();
+            var httpStatus = response.getStatusCode();
+
+            if (httpStatus == 200 || httpStatus == 201) {
+                var responseBody = response.getBody();
+                var parser = new JSONParser();
+                var parsed = parser.parse(responseBody);
+                var vmNames = '';
+				var vmList = [];
+				/*
+                for (var key in parsed['data']) {
+                    vmNames = ((parsed['data'][key]['name'])) + '|' + vmNames;
+                }*/
+				
+				for (var key in parsed['data']) {
+                    vmNames = ((parsed['data'][key]['name'])) + '|' + vmNames;
+				}
+				
+            } else {
+                gs.log('No Patch vmNames Available ');
+            }
+        } catch (ex) {
+            gs.info("No Patch vmNames Available catch line Exception : " + ex + "\nResponse : " + JSON.stringify(response) + "\nhttpstatus :" + httpStatus);
+        }
+        return vmNames;
+    },
+
+    isPublic: function() {
+        return true;
+    },
+
+    type: 'ITDQUERYAZURERESOURCES'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-27 06:20:34</sys_created_on>
+        <sys_id>3ec0e06387db11109839fd57dabb3544</sys_id>
+        <sys_name>ITDQUERYAZURERESOURCES</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_include_3ec0e06387db11109839fd57dabb3544</sys_update_name>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eada04b50000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_3ec0e06387db11109839fd57dabb3544</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:31:07</sys_created_on>
+        <sys_id>399e7ba287e71d109839fd57dabb35ce</sys_id>
+    </sys_claim>
+</record_update>

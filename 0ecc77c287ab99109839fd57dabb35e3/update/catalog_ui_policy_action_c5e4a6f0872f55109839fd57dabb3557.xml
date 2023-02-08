@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item display_value="Provisioning VM">ecff97a2871f11109839fd57dabb3502</catalog_item>
+        <catalog_variable>IO:999300f2879f11109839fd57dabb3539</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <mandatory>true</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-01 11:30:17</sys_created_on>
+        <sys_id>c5e4a6f0872f55109839fd57dabb3557</sys_id>
+        <sys_name>service_principle_name</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_c5e4a6f0872f55109839fd57dabb3557</sys_update_name>
+        <table/>
+        <ui_policy display_value="Make Service Principle Name mandatory">3ea4a2f0872f55109839fd57dabb3580</ui_policy>
+        <variable>service_principle_name</variable>
+        <variable_set/>
+        <visible>true</visible>
+    </catalog_ui_policy_action>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eadffbe30000001</claim_timestamp>
+        <metadata_update_name>catalog_ui_policy_action_c5e4a6f0872f55109839fd57dabb3557</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:37:38</sys_created_on>
+        <sys_id>1510083687e71d109839fd57dabb3514</sys_id>
+    </sys_claim>
+</record_update>

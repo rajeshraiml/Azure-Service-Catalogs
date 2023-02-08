@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>getSubnetList</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>Azure_Windows_Linux_Rest_Message [ getSubnetList ]</qualified_name>
+        <rest_endpoint>https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGrpId}/providers/Microsoft.Network/virtualNetworks/${virtualNwName}/subnets/${subnetName}?api-version=2020-05-01</rest_endpoint>
+        <rest_message display_value="Azure_Windows_Linux_Rest_Message">d7df3d9f875311109839fd57dabb35a1</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 14:32:40</sys_created_on>
+        <sys_id>9a18b3dc87fb91509839fd57dabb3591</sys_id>
+        <sys_name>getSubnetList</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_9a18b3dc87fb91509839fd57dabb3591</sys_update_name>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+</record_update>

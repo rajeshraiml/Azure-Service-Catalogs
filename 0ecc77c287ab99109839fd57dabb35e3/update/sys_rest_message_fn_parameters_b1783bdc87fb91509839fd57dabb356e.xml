@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_parameters">
+    <sys_rest_message_fn_parameters action="INSERT_OR_UPDATE">
+        <name>virtualNwName</name>
+        <rest_message_function display_value="getSubnetList">9a18b3dc87fb91509839fd57dabb3591</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_parameters</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 14:33:47</sys_created_on>
+        <sys_id>b1783bdc87fb91509839fd57dabb356e</sys_id>
+        <sys_name>virtualNwName</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_parameters_b1783bdc87fb91509839fd57dabb356e</sys_update_name>
+        <type>string</type>
+        <value>rg-kcns-costco-initiative-vnet</value>
+    </sys_rest_message_fn_parameters>
+</record_update>

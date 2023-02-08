@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.RITMVariablesUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>RITMVariablesUtil</name>
+        <script><![CDATA[var RITMVariablesUtil = Class.create();
+RITMVariablesUtil.prototype = {
+    initialize: function() {},
+
+    getVariables: function(ritmSysID, includeEmpty, replaceReferences) {
+
+        includeEmpty = includeEmpty ? includeEmpty : false;
+        replaceReferences = replaceReferences ? replaceReferences : false;
+
+        var variables = [];
+
+        var scReqItemRec = new GlideRecord('sc_req_item');
+        if (scReqItemRec.get(ritmSysID)) {
+
+            // Regular RITM variables
+            var varElements = scReqItemRec.variables.getElements();
+            for (var i = 0; i < varElements.length; i++) {
+                var question = varElements[i].getQuestion();
+                var qValue = question.getValue();
+                var qDisplayValue = question.getDisplayValue();
+                var qType = question.getType();
+
+                // Check for qDisplayValue too because for unchecked checkboxes getValue() returns null
+                if (includeEmpty || qValue || qDisplayValue) {
+                    var qOut = {};
+                    qOut.name = question.getName();
+                    qOut.description = question.getLabel();
+
+                    if (replaceReferences && qType == 8) {
+                        // type = 8 - reference
+                        qOut.value = qDisplayValue;
+                    } else {
+                        qOut.value = qValue;
+                        if (qValue != qDisplayValue) {
+                            qOut.displayValue = qDisplayValue;
+                        }
+                    }
+
+                    variables.push(qOut);
+                }
+            }
+
+            // Multi Row RITM variables
+            var vars = scReqItemRec.variables.getElements(true);
+
+            for (var i = 0; i < vars.length; i++) {
+                var mrvs = vars[i];
+                if (mrvs.isMultiRow()) {
+                    var mrvsArray = JSON.parse(mrvs);
+                    var mOut = {};
+                    mOut.name = mrvs.getLabel();
+                    mOut.value = mrvsArray;
+                    variables.push(mOut);
+                }
+            }
+        }
+
+        return variables;
+    },
+    getTags: function(ritmSysID) {
+        var scReqItemRec = new GlideRecord('sc_req_item');
+        if (scReqItemRec.get(ritmSysID)) {
+
+            var tag_array = [{
+                    "name": "Build Date",
+                    "value": ""
+                },
+                {
+                    "name": "Component",
+                    "value": ""
+                },
+                {
+                    "name": "Kyn_mcms_managed",
+                    "value": scReqItemRec.variable_pool.managed.toString()
+                },
+                {
+                    "name": "Environment",
+                    "value": scReqItemRec.variable_pool.environment.toString()
+                },
+                {
+                    "name": "Patching Group",
+                    "value": scReqItemRec.variable_pool.patching_group.toString()
+                },
+                {
+                    "name": "OS",
+                    "value": scReqItemRec.variable_pool.os.toString()
+                }
+            ];
+
+            var tags = {
+                "tags": tag_array
+            }
+
+        }
+        return tag_array;
+
+    },
+
+    type: 'RITMVariablesUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-30 15:12:46</sys_created_on>
+        <sys_id>e0fd862c87eb15109839fd57dabb3564</sys_id>
+        <sys_name>RITMVariablesUtil</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_include_e0fd862c87eb15109839fd57dabb3564</sys_update_name>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eada063d0000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_e0fd862c87eb15109839fd57dabb3564</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:31:07</sys_created_on>
+        <sys_id>719effa287e71d109839fd57dabb35c8</sys_id>
+    </sys_claim>
+</record_update>

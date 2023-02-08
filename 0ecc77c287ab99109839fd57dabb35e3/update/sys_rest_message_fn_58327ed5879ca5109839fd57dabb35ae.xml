@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>getWindowsPathListJson</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>Azure_Windows_Linux_Rest_Message [ getWindowsPathListJson ]</qualified_name>
+        <rest_endpoint>https://github.kyndryl.net/api/v3/repos/cloud-practice-engineering/patch-mgmt/contents/tf-azure-module-update-management/WindowsPathList.json</rest_endpoint>
+        <rest_message display_value="Azure_Windows_Linux_Rest_Message">d7df3d9f875311109839fd57dabb35a1</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-09 08:34:31</sys_created_on>
+        <sys_id>58327ed5879ca5109839fd57dabb35ae</sys_id>
+        <sys_name>getWindowsPathListJson</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_58327ed5879ca5109839fd57dabb35ae</sys_update_name>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+</record_update>

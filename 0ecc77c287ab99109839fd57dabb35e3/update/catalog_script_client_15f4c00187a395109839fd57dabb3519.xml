@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="catalog_script_client">
+    <catalog_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_catalog>true</applies_catalog>
+        <applies_extended>false</applies_extended>
+        <applies_req_item>true</applies_req_item>
+        <applies_sc_task>true</applies_sc_task>
+        <applies_target_record>false</applies_target_record>
+        <applies_to>item</applies_to>
+        <cat_item display_value="Modify Patching Group">85aa7bf0876395109839fd57dabb35d8</cat_item>
+        <cat_variable>IO:ed2e3378876395109839fd57dabb3520</cat_variable>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Modify Patch Populate Patch Group Type</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading || newValue == '') {
+        return;
+    }
+
+    if (newValue != '') {        
+        var os = g_form.getValue('os_type');
+        if (os == 'Windows') {
+            g_form.clearOptions("patching_group_type");
+            g_form.addOption("patching_group_type", '--None--', '--None--', 0);
+            g_form.addOption("patching_group_type", 'Pilot', 'Pilot', 1);
+            g_form.addOption("patching_group_type", 'Standard', 'Standard', 2);
+            g_form.addOption("patching_group_type", 'P1W', 'P1W', 3);
+            g_form.addOption("patching_group_type", 'P2W', 'P2W', 4);
+            g_form.addOption("patching_group_type", 'P3W', 'P3W', 5);
+            g_form.addOption("patching_group_type", 'P4W', 'P4W', 6);
+            g_form.addOption("patching_group_type", 'SP1W', 'SP1W', 7);
+            g_form.addOption("patching_group_type", 'SP2W', 'SP2W', 8);
+            g_form.addOption("patching_group_type", 'SP3W', 'SP3W', 9);
+            g_form.addOption("patching_group_type", 'SP4W', 'SP4W', 10);
+            g_form.addOption("patching_group_type", 'SN1W', 'SN1W', 11);
+            g_form.addOption("patching_group_type", 'SN2W', 'SN2W', 12);
+            g_form.addOption("patching_group_type", 'SN3W', 'SN3W', 13);
+            g_form.addOption("patching_group_type", 'SN4W', 'SN4W', 14);
+
+            g_form.addOption("patching_group_type", 'SP5W', 'SP5W', 15);
+            g_form.addOption("patching_group_type", 'SN5W', 'SN5W', 16);
+            g_form.addOption("patching_group_type", 'SP6W', 'SP6W', 17);
+            g_form.addOption("patching_group_type", 'SN6W', 'SN6W', 18);
+
+
+
+        } else { //For Linux OS
+
+            g_form.clearOptions("patching_group_type");
+            g_form.addOption("patching_group_type", '--None--', '--None--', 0);
+            g_form.addOption("patching_group_type", 'Pilot', 'Pilot', 1);
+            g_form.addOption("patching_group_type", 'Standard', 'Standard', 2);            
+            g_form.addOption("patching_group_type", 'P1L', 'P1L', 3);
+            g_form.addOption("patching_group_type", 'P2L', 'P2L', 4);
+            g_form.addOption("patching_group_type", 'P3L', 'P3L', 5);
+            g_form.addOption("patching_group_type", 'P4L', 'P4L', 6);
+            g_form.addOption("patching_group_type", 'SP1L', 'SP1L', 7);
+            g_form.addOption("patching_group_type", 'SP2L', 'SP2L', 8);
+            g_form.addOption("patching_group_type", 'SP3L', 'SP3L', 9);
+            g_form.addOption("patching_group_type", 'SP4L', 'SP4L', 10);
+            g_form.addOption("patching_group_type", 'SN1L', 'SN1L', 11);
+            g_form.addOption("patching_group_type", 'SN2L', 'SN2L', 12);
+            g_form.addOption("patching_group_type", 'SN3L', 'SN3L', 13);
+            g_form.addOption("patching_group_type", 'SN4L', 'SN4L', 14);
+
+        }
+
+    }
+
+}]]></script>
+        <sys_class_name>catalog_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-01 18:29:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>15f4c00187a395109839fd57dabb3519</sys_id>
+        <sys_name>Modify Patch Populate Patch Group Type</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="KCNS-CT-ServiceCatalogs" source="5aa8c70087a3d1109839fd57dabb355a">5aa8c70087a3d1109839fd57dabb355a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>catalog_script_client_15f4c00187a395109839fd57dabb3519</sys_update_name>
+        <table/>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <variable_set/>
+        <view/>
+    </catalog_script_client>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eadeef910000001</claim_timestamp>
+        <metadata_update_name>catalog_script_client_15f4c00187a395109839fd57dabb3519</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:36:29</sys_created_on>
+        <sys_id>98dff32687e71d109839fd57dabb3565</sys_id>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eadeef8e0000001</claim_timestamp>
+        <metadata_update_name>catalog_script_client_15f4c00187a395109839fd57dabb3519</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>KCNS-CT-ServiceCatalogs</previous_claim_name>
+        <previous_claim_scope>5aa8c70087a3d1109839fd57dabb355a</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:36:29</sys_created_on>
+        <sys_id>5cdff32687e71d109839fd57dabb3565</sys_id>
+    </sys_claim>
+</record_update>

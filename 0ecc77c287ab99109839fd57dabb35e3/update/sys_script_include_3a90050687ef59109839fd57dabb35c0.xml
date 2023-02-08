@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.GitHubUploadUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Utility to Upload file to GitHub Repo</description>
+        <name>GitHubUploadUtil</name>
+        <script><![CDATA[var GitHubUploadUtil = Class.create();
+GitHubUploadUtil.prototype = {
+    initialize: function() {},
+    uploadFile: function(fileName, fileContent) {
+        try {
+            var filePath = '';
+            var msg = '';
+            restMsgName = 'Azure_Windows_Linux_Rest_Message';
+			var statuscode;
+
+            var getInputJsonSha = new sn_ws.RESTMessageV2(restMsgName, 'getPatchInputJSON');
+            var getInputJsonShaResponse = getInputJsonSha.execute();
+            var httpStatus = getInputJsonShaResponse.getStatusCode();
+
+            if (httpStatus == 200 || httpStatus == 201) {
+
+                var responseBodySha = getInputJsonShaResponse.getBody();
+                var parserSha = new JSONParser();
+                var parsedSha = parserSha.parse(responseBodySha);
+                var sha = parsedSha.sha;
+
+                fileName = 'input.json';
+                var request = new sn_ws.RESTMessageV2(restMsgName, 'putGithubWithSha');
+                var encodedcontent = GlideStringUtil.base64Encode(fileContent);
+                request.setStringParameter('fileName', 'input.json');
+                request.setStringParameter('content', encodedcontent);
+                request.setStringParameter('sha', sha);
+                request.setStringParameter('message', "input.json file updated");
+                var response = request.execute();
+                var httpStatus1 = response.getStatusCode();
+				statuscode = httpStatus1;
+                if (httpStatus1 == 200 || httpStatus1 == 201) {
+                    var responseBody = response.getBody();
+                    var parser = new JSONParser();
+                    var parsed = parser.parse(responseBody);
+                    filePath = parsed.content.path;
+                    gs.log('Rajesh   GitHubUploadUtil: ' + filePath);
+                } else {
+                    gs.log('Rajesh : GitHubUploadUtil' + response.getBody() + 'status : ' + httpStatus);
+
+                }
+
+
+            } else {
+
+                fileName = 'input.json';
+                var request1 = new sn_ws.RESTMessageV2(restMsgName, 'putGithubWithOutSha');
+                var encodedcontent1 = GlideStringUtil.base64Encode(fileContent);
+                request1.setStringParameter('fileName', fileName);
+                request1.setStringParameter('content', encodedcontent);                
+                request1.setStringParameter('message', fileName + " file uploaded");
+                var response1 = request1.execute();
+                var httpStatus2 = response1.getStatusCode();
+				statuscode = httpStatus2;
+                if (httpStatus2 == 200 || httpStatus2 == 201) {
+                    var responseBody1 = response1.getBody();
+                    var parser1 = new JSONParser();
+                    var parsed1 = parser1.parse(responseBody1);
+                    filePath = parsed.content.path;
+                    gs.log('filePath   GitHubUploadUtil: ' + filePath);
+                } else {
+                    gs.log('Error : GitHubUploadUtil' + response.getBody() + 'status : ' + httpStatus);
+
+                }
+
+
+            }
+
+
+        } catch (ex) {
+            gs.info("GitHubUploadUtil Exception : " + ex);
+        }
+
+        return statuscode;
+    },
+
+    type: 'GitHubUploadUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 01:24:39</sys_created_on>
+        <sys_id>3a90050687ef59109839fd57dabb35c0</sys_id>
+        <sys_name>GitHubUploadUtil</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_include_3a90050687ef59109839fd57dabb35c0</sys_update_name>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184eada053b0000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_3a90050687ef59109839fd57dabb35c0</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:31:07</sys_created_on>
+        <sys_id>3d9e7ba287e71d109839fd57dabb35d2</sys_id>
+    </sys_claim>
+</record_update>

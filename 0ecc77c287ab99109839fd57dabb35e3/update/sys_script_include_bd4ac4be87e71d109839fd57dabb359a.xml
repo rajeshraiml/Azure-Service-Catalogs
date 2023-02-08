@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.GenerateHostName</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Function to generate unique hostname</description>
+        <name>GenerateHostName</name>
+        <script><![CDATA[var GenerateHostName = Class.create();
+GenerateHostName.prototype = {
+    initialize: function() {},
+
+    generateHostname: function() {
+		
+		var host = this.getParameter('sysparm_host').toString();
+        var prefix = gs.getProperty('Hostname Prefix');	
+		var hostname = prefix+'-'+host+'-'.toString();
+        return hostname.trim();
+
+    },
+    generateString: function(length) {
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+
+    },
+
+    type: 'GenerateHostName'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 05:24:39</sys_created_on>
+        <sys_id>bd4ac4be87e71d109839fd57dabb359a</sys_id>
+        <sys_name>GenerateHostName</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_script_include_bd4ac4be87e71d109839fd57dabb359a</sys_update_name>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_parameters">
+    <sys_rest_message_fn_parameters action="INSERT_OR_UPDATE">
+        <name>pipelineId</name>
+        <rest_message_function display_value="triggerVMProvisioningPipeline">8c05610b87eb5d109839fd57dabb35bc</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_parameters</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 06:45:49</sys_created_on>
+        <sys_id>12f6658787eb5d109839fd57dabb35e7</sys_id>
+        <sys_name>pipelineId</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_parameters_12f6658787eb5d109839fd57dabb35e7</sys_update_name>
+        <type>string</type>
+        <value>3</value>
+    </sys_rest_message_fn_parameters>
+</record_update>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>getVnetList</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>Azure_Windows_Linux_Rest_Message [ getVnetList ]</qualified_name>
+        <rest_endpoint>https://management.azure.com/subscriptions/${subscriptionId}/providers/Microsoft.Network/virtualNetworks?api-version=2020-11-01</rest_endpoint>
+        <rest_message display_value="Azure_Windows_Linux_Rest_Message">d7df3d9f875311109839fd57dabb35a1</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-26 18:14:55</sys_created_on>
+        <sys_id>6c919e9f879311109839fd57dabb358c</sys_id>
+        <sys_name>getVnetList</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_6c919e9f879311109839fd57dabb358c</sys_update_name>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</claim_owner_scope>
+        <claim_timestamp>184ead96c7e0000001</claim_timestamp>
+        <metadata_update_name>sys_rest_message_fn_6c919e9f879311109839fd57dabb358c</metadata_update_name>
+        <previous_claim_app_version>1.0.0</previous_claim_app_version>
+        <previous_claim_name>Azure Service Catalogs</previous_claim_name>
+        <previous_claim_scope>0ecc77c287ab99109839fd57dabb35e3</previous_claim_scope>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-07 04:30:28</sys_created_on>
+        <sys_id>9c7e3fa287e71d109839fd57dabb35a6</sys_id>
+    </sys_claim>
+</record_update>

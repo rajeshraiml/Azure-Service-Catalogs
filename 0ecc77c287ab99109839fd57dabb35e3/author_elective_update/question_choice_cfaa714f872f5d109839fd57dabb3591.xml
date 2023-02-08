@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="DELETE">
+        <inactive>false</inactive>
+        <order>110</order>
+        <published_ref/>
+        <question display_value="Service Owner">50fd3cbc876755109839fd57dabb35b2</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 08:12:35</sys_created_on>
+        <sys_id>cfaa714f872f5d109839fd57dabb3591</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Omprakash Asopa</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>question_choice_cfaa714f872f5d109839fd57dabb3591</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-08 08:12:35</sys_updated_on>
+        <text>Omprakash Asopa</text>
+        <value>Omprakash Asopa</value>
+    </question_choice>
+    <fx_price action="DELETE" query="id=cfaa714f872f5d109839fd57dabb3591"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</application>
+        <file_path/>
+        <instance_id>5f767130dbbdcd90e62f3feb6896194f</instance_id>
+        <instance_name>dev125405</instance_name>
+        <name>question_choice_cfaa714f872f5d109839fd57dabb3591</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice"><question_choice action="INSERT_OR_UPDATE"><inactive>false</inactive><order>110</order><published_ref/><question display_value="Service Owner">50fd3cbc876755109839fd57dabb35b2</question><sys_class_name>question_choice</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-12-08 08:12:35</sys_created_on><sys_id>cfaa714f872f5d109839fd57dabb3591</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Omprakash Asopa</sys_name><sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package><sys_policy/><sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope><sys_update_name>question_choice_cfaa714f872f5d109839fd57dabb3591</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-12-08 08:12:35</sys_updated_on><text>Omprakash Asopa</text><value>Omprakash Asopa</value></question_choice><fx_price action="delete_multiple" query="id=cfaa714f872f5d109839fd57dabb3591"/></record_update>]]></payload>
+        <payload_hash>47699203</payload_hash>
+        <record_name>Omprakash Asopa</record_name>
+        <reverted_from/>
+        <source>dff204f687e71d109839fd57dabb3521</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 08:12:35</sys_created_on>
+        <sys_id>fbda3d0f872f5d109839fd57dabb35be</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>184f0cb24eb0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-08 08:12:35</sys_updated_on>
+        <type>Question Choice</type>
+        <update_guid>37da3d0fd62f5d102468d3ffa245fbbe</update_guid>
+        <update_guid_history>37da3d0fd62f5d102468d3ffa245fbbe:47699203</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Omprakash Asopa">d54c798f872f5d109839fd57dabb3527</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 08:18:43</sys_created_on>
+        <sys_db_object display_value="" name="question_choice">question_choice</sys_db_object>
+        <sys_id>84e0072931014a3090c6523bc7058210</sys_id>
+        <sys_metadata>cfaa714f872f5d109839fd57dabb3591</sys_metadata>
+        <sys_name>Omprakash Asopa</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_parent display_value="Service Owner">50fd3cbc876755109839fd57dabb35b2</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_scope_delete display_value="">3755884a8dd14f808cac50b480c58400</sys_scope_delete>
+        <sys_update_name>question_choice_cfaa714f872f5d109839fd57dabb3591</sys_update_name>
+        <sys_update_version display_value="question_choice_cfaa714f872f5d109839fd57dabb3591">fbda3d0f872f5d109839fd57dabb35be</sys_update_version>
+    </sys_metadata_delete>
+</record_update>

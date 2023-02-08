@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_kmf_crypto_caller_policy">
+    <sys_kmf_crypto_caller_policy action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <approval_type/>
+        <check_script_hash>false</check_script_hash>
+        <crypto_module display_value="com_glide_web_service_consumer_glideencrypter">2ca78142e7222010628a20c343f6a92e</crypto_module>
+        <crypto_spec display_value="com_glide_web_service_consumer_glideencrypter --- Symmetric Key Wrapping/Unwrapping">eca78142e7222010628a20c343f6a930</crypto_spec>
+        <granular_operation/>
+        <identity_group_alias/>
+        <impersonation>false</impersonation>
+        <instance_recipient/>
+        <owner>5f767130dbbdcd90e62f3feb6896194f</owner>
+        <policy_name>AutoGen-script-48c17ed207131000dada43c0d1021e83-global.com_glide_web_service_consumer_glideencrypter</policy_name>
+        <result>track</result>
+        <script_hash>JFa6KZc6WYW72T8wKSBIy6Sm510pdmqYLA42tlVFyjE=</script_hash>
+        <script_table>sys_ui_action</script_table>
+        <signature_data/>
+        <specify_purpose>false</specify_purpose>
+        <sys_class_name>sys_kmf_crypto_caller_policy</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 06:49:49</sys_created_on>
+        <sys_id>dfe7218b87eb5d109839fd57dabb3500</sys_id>
+        <sys_name/>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_kmf_crypto_caller_policy_dfe7218b87eb5d109839fd57dabb3500</sys_update_name>
+        <target_role/>
+        <target_scope/>
+        <target_script>48c17ed207131000dada43c0d1021e83</target_script>
+        <type>1</type>
+        <used>false</used>
+    </sys_kmf_crypto_caller_policy>
+</record_update>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>250</order>
+        <published_ref/>
+        <question display_value="Service Owner">50fd3cbc876755109839fd57dabb35b2</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-08 08:22:48</sys_created_on>
+        <sys_id>d01df1cf872f5d109839fd57dabb3599</sys_id>
+        <sys_name>Hanumantha Nunna</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>question_choice_d01df1cf872f5d109839fd57dabb3599</sys_update_name>
+        <text>Hanumantha Nunna</text>
+        <value>Hanumantha Nunna</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=d01df1cf872f5d109839fd57dabb3599"/>
+</record_update>
