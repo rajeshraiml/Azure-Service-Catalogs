@@ -10,7 +10,7 @@
         <sys_policy/>
         <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
         <sys_update_name>sys_properties_category_7ce9c653872f9d109839fd57dabb35b1</sys_update_name>
-        <title/>
+        <title><![CDATA[<p>Azure Devops Pipeline configuration</p>]]></title>
     </sys_properties_category>
     <sys_translated_text action="delete_multiple" query="documentkey=7ce9c653872f9d109839fd57dabb35b1"/>
 </record_update>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
+    <sys_rest_message_fn_headers action="INSERT_OR_UPDATE">
+        <name>Content-Type</name>
+        <rest_message_function display_value="">404db14b87f4a1109839fd57dabb3595</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-08 11:42:39</sys_created_on>
+        <sys_id>ac4db14b87f4a1109839fd57dabb35b0</sys_id>
+        <sys_name>Content-Type</sys_name>
+        <sys_package display_value="Azure Service Catalogs" source="0ecc77c287ab99109839fd57dabb35e3">0ecc77c287ab99109839fd57dabb35e3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Azure Service Catalogs">0ecc77c287ab99109839fd57dabb35e3</sys_scope>
+        <sys_update_name>sys_rest_message_fn_headers_ac4db14b87f4a1109839fd57dabb35b0</sys_update_name>
+        <value>application/json, application/json-patch+json</value>
+    </sys_rest_message_fn_headers>
+</record_update>

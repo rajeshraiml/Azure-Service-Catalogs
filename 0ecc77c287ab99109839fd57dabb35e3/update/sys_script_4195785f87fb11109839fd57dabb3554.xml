@@ -15,11 +15,10 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="sc_task">short_descriptionLIKEAuto-Schedule Patching Task^stateCHANGESTO2^NQshort_descriptionLIKEAuto-Schedule Patching Task^state=1^work_notesVALCHANGES^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="LIKE" or="false" value="Auto-Schedule Patching Task"/>
+        <filter_condition table="sc_task">short_descriptionLIKEAuto-Schedule Patching Task^stateCHANGESTO2^NQshort_descriptionLIKEAuto-Schedule Patching Task^state=1^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="LIKE" or="false" value="Auto-Schedule Patching Task"/>
             <item display_value="Work in Progress" endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="2"/>
             <item endquery="false" field="short_description" goto="false" newquery="true" operator="LIKE" or="false" value="Auto-Schedule Patching Task"/>
             <item display_value="Open" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="1"/>
-            <item endquery="false" field="work_notes" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
@@ -38,7 +37,20 @@
         // Add your code here
         var msg = "BR : KCNS-Trigger-LogicApp-SchedulePatch";
         var item = new RITMVariablesUtil();
-		var rg='';
+        var rg = '';
+        
+		var TaskNumber = "";
+        var Subscription = "";
+        var sysid = "";
+        var IncludedKbNumber = "";
+        var ExcludedKbNumber = "";
+        var Date = "";
+        var Time = "";
+        var TimeZone = "";
+        var PatchGroup = "";
+        var Requestor = "";
+        var Duration = "";
+		
         var data = item.getVariables(current.request_item, true, true);
         var properyData = JSON.parse(gs.getProperty('temp.patching.json'));
         var os_type = '';
@@ -49,19 +61,20 @@
         temp = temp + '"URL":"' + properyData.url + '",\n';
         temp = temp + '"automationAccountName":"' + properyData.automationAccountName + '",\n';
         temp = temp + '"tasknumber":"' + current.number + '",\n';
-		temp = temp + '"sysid":"' + current.sys_id.toString() + '",\n';		
-		temp = temp + '"environment":"' + properyData.environment + '",\n';
-		temp = temp + '"VM_Type":"' + properyData.VM_Type + '",\n';
+        temp = temp + '"sysid":"' + current.sys_id.toString() + '",\n';
+        temp = temp + '"environment":"' + properyData.environment + '",\n';
+        temp = temp + '"VM_Type":"' + properyData.VM_Type + '",\n';
 
         for (var i = 0; i < data.length; i++) {
 
             if (data[i].name == 'subscription') {
                 temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',\n';
+				Subscription =  data[i].value;
 
             } else if (data[i].name == 'resource_group') {
                 temp = temp + '"resourceGroupName":"' + data[i].value + '",\n';
-				rg =  data[i].value;
-				temp = temp + '"targets_rg_list":[' + JSON.stringify(data[i].value) + '],\n';
+                rg = data[i].value;
+                temp = temp + '"targets_rg_list":[' + JSON.stringify(data[i].value) + '],\n';
 
             } else if (data[i].name == 'os_type') {
                 os_type = data[i].value;
@@ -69,6 +82,7 @@
 
             } else if (data[i].name == 'schedule_date') {
                 temp = temp + '"start_date":"' + data[i].value + '",\n';
+				Date = data[i].value;
 
             } else if (data[i].name == 'communication_group') {
 
@@ -79,6 +93,7 @@
                 t = t.split(" ");
 
                 temp = temp + '"start_time":"' + t[1] + '",\n';
+				Time = t[1]; 
 
             } else if (data[i].name == 'time_zone') {
 
@@ -89,8 +104,8 @@
             } else if (data[i].name == 'patch_classification') {
 
                 if (os_type == 'Windows') {
-					      
-    
+
+
                     temp = temp + '"windows_Update_Classifications":["Critical", "Security"],\n';
 
                 } else {
@@ -99,59 +114,66 @@
 
             } else if (data[i].name == 'patch_included') {
                 //temp = temp + '"include_Package":[' + data[i].value + '],';
-				
-				if (os_type == 'Windows') {
-					          
+
+                if (os_type == 'Windows') {
+
                     temp = temp + '"include_Package":["KB5011435","KB5012356"],\n';
+					//IncludedKbNumber = ["KB5011435","KB5012356"];
+					IncludedKbNumber = "KB5011435";
 
                 } else {
                     temp = temp + '"include_Package":[ "apt-get upgrade","sqlite-3.3.6-7"],\n';
+					//IncludedKbNumber = [ "apt-get upgrade","sqlite-3.3.6-7"]
+					IncludedKbNumber = "apt-get upgrade";
                 }
-				
-				
-				
+
+
+
             } else if (data[i].name == 'patch_excluded') {
                 //temp = temp + '"exclude_Package":[' + data[i].value + '],';								
-				
-				if (os_type == 'Windows') {
-					          
+
+                if (os_type == 'Windows') {
+
                     temp = temp + '"exclude_Package":[""],\n';
+					ExcludedKbNumber = "KB5012356";
 
                 } else {
                     temp = temp + '"exclude_Package":["kernel *"],\n';
+					ExcludedKbNumber = "kernel *";
                 }
 
             } else if (data[i].name == 'vm_list') {
-               // temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
-				// temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
-				newrg = '"'+rg+'"'
-				temp = temp + '"vms":{'+JSON.stringify(data[i].value)+':'+newrg+'},\n';
+                // temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
+                // temp = temp + '"vms":[' + JSON.stringify(data[i].value) + '],\n';
+                newrg = '"' + rg + '"'
+                temp = temp + '"vms":{' + JSON.stringify(data[i].value) + ':' + newrg + '},\n';
 
             } else if (data[i].name == 'scheduled_end_date' || data[i].name == 'end_time') {
-				
-			} else if (data[i].name == 'patch_group'){
-				temp = temp + '"targets_tag_list":{ "PatchGroup":'+JSON.stringify(data[i].value)+'},\n';
-				
-			}else {
+
+            } else if (data[i].name == 'patch_group') {
+                temp = temp + '"targets_tag_list":{ "PatchGroup":' + JSON.stringify(data[i].value) + '},\n';
+				PatchGroup = data[i].value;
+
+            } else {
                 temp = temp + JSON.stringify(data[i].name) + ':' + JSON.stringify(data[i].value) + ',\n';
             }
 
 
 
         }
- 
-		
-		temp = temp + '"targets_location_list":[ "eastus","westeurope"],\n';
-		
-			
+
+
+        temp = temp + '"targets_location_list":[ "eastus","westeurope"],\n';
+
+
         temp = temp + '"duration":"' + properyData.duration + '",\n';
-		temp = temp + '"time_zone_hours":"' + properyData.time_zone_hours + '",\n';
+        temp = temp + '"time_zone_hours":"' + properyData.time_zone_hours + '",\n';
         temp = temp + '"pre_task_name":"' + properyData.pre_task_name + '",\n';
         temp = temp + '"pre_task_parameters":"' + properyData.pre_task_parameters + '",\n';
         temp = temp + '"post_task_name":"' + properyData.post_task_name + '",\n';
         temp = temp + '"post_task_parameters":"' + properyData.pre_task_parameters + '"\n}';
-		
-		
+
+		/*
         var git = new GitHubUploadUtil();
         httpStatus = git.uploadFile(current.number + '.json', temp);
 
@@ -160,17 +182,17 @@
             current.update();
 
         } else {
-			current.state = 1;
-			current.work_notes = 'Fail to Uploaded fil to Git hub :\n\n' + temp + '\n' + msg + '\n\n httpstatus : ' + httpStatus;
+            current.state = 1;
+            current.work_notes = 'Fail to Uploaded fil to Git hub :\n\n' + temp + '\n' + msg + '\n\n httpstatus : ' + httpStatus;
             current.update();
 
         }
+		*/
 
-
-        /*
+        
         var msg = "Pipeline Details ";
         var restMsgName = 'Azure_Windows_Linux_Rest_Message';
-        var request = new sn_ws.RESTMessageV2(restMsgName, 'triggerVMProvisioningPipeline');
+        var request = new sn_ws.RESTMessageV2(restMsgName, 'triggerSchedulePatchingPipeline');
 
         var usename = gs.getProperty('devops.pipeline.user');
         var token = gs.getProperty('devops.pipeline.token');
@@ -179,10 +201,10 @@
 
         // msg = msg + "\ndevopsuser :" + devopsuser;
 
-        var organization = gs.getProperty('pipeline.vm.organization');
-        var project = gs.getProperty('pipeline.vm.project');
+        var organization = gs.getProperty('pipeline.schedulepatch.organization');
+        var project = gs.getProperty('pipeline.schedulepatch.project');
         project = project.replaceAll(" ", "%20");
-        var pipelineId = gs.getProperty('pipeline.vm.pipelineid');
+        var pipelineId = gs.getProperty('pipeline.schedulepatch.pipelineid');
         // msg = msg + "\norganization :" + organization;
         // msg = msg + "\nproject :" + project;
         // msg = msg + "\npipelineId :" + pipelineId;
@@ -194,11 +216,33 @@
         var encodedAuth = GlideStringUtil.base64Encode(devopsuser);
         //request.setBasicAuth('<username>', '<password>');
         // msg = msg + "\nencodedAuth :" + encodedAuth;
+		
+		 var finalPayload = {
+			  "templateParameters": {
+			   "TaskNumber": current.number.getDisplayValue(),
+                "Subscription": Subscription,
+                "sysid": current.sys_id.toString(),
+                "IncludedKbNumber": IncludedKbNumber,
+                "ExcludedKbNumber": ExcludedKbNumber,
+                "Date": Date,
+				 // "Date": "2023-01-09",
+                //"Time": "14:30:00",
+				  "Time": Time,
+                "TimeZone": "India Standard Time",
+                "PatchGroup": PatchGroup,
+                //"Duration": properyData.duration,
+				 "Duration": "5",
+				"Requestor":current.sys_created_by.getDisplayValue()
+				//"PostTaskRunbookName":"patch_postscript"
 
+			  }
+          }
+
+		msg = msg + "\nPayload : "+JSON.stringify(finalPayload);
         request.setRequestHeader("Accept", "Application/json");
         request.setRequestHeader("Content-Type", "application/json");
         request.setRequestHeader("Authorization", "Basic " + encodedAuth);
-        request.setRequestBody(JSON.stringify(payload1));
+        request.setRequestBody(JSON.stringify(finalPayload));
 
         var endpoint = request.getEndpoint();
         var response = request.execute();
@@ -219,10 +263,10 @@
             gs.log('Error : KCNS-Trigger-LogicApp-SchedulePatch ' + response.getBody() + 'status : ' + httpStatus);
 
         }
-		*/
+		
 
         gs.info('BR : KCNS-Trigger-LogicApp-SchedulePatch payload : ', temp);
-        current.work_notes = 'BR : KCNS-Trigger-LogicApp-SchedulePatch payload :\n\n' + temp + '\n' + msg;
+        current.work_notes = 'BR : KCNS-Trigger-LogicApp-SchedulePatch payload :\n\n' + msg;
         current.update();
     } catch (e) {
         current.work_notes = 'BR :KCNS-Trigger-LogicApp-SchedulePatch exception :\n\n' + e;
